@@ -90,16 +90,16 @@ L’affectation d’une valeur à une variable se fait par l’opérateur = (nom
 - On peut assigner une valeur à plusieurs variables simultanément.
 - On peut aussi effectuer des affectations parallèles.
 
-``` python=
-# Affectation simultanée
+``` python
+# affectation simultanée
 x = y = 7
 x
 7
 y 
 7
 ```
-``` python=
-# Affectation parallèles
+``` python
+# affectation parallèles
 a, b = 4, 8.33
 a
 4
@@ -113,54 +113,62 @@ a
 
 Certaines mots sont réservés comme global, False, True, as, return, from, if, None, ... (33 au total)
 
-``` python=
-## Nom de variable correct 
+``` python
+# nom de variable correct 
 nombrePair = 2
 epsg = RGF93 
 n = 7
 msg = “Salut”
 pie = 3.14159
 ```
-``` python=
-## Nom de variable incorrect
+``` python
+# nom de variable incorrect
 return = Dataframe(np.random.randn(10,5))
 None = 12
 1ème valeur = 1000
 ```
 
-``` python=
-## Afficher les variables
+``` python
+# afficher les variables
 print (epsg)
 ```
 
 # Typage dynamique
 Sous python , il n’est pas nécessaire de définir le type des variables, **typage dynamique**,en opposition au typage statique.
 
-``` c=
-# En langage C ou C++
+``` c
+/* En langage C ou C++ */
 int a;
 a = 5
 ```
 
-```python=
-## typage dynamique (Python) 
+```python
+# typage dynamique (Python) 
 a = 5
+```
 
-## type de donnée (integer)
+| type | Exemple | 
+| -------- | -------- | 
+| Nombre     | bool, int, float     | 
+| Séquence     | str, list, range, ...     |
+| Liste associative     | dictionnaire     |
+
+```python
+# type de donnée (integer)
 nombrePair = 2  
-## type des données (String) 
+# type des données (String) 
 msg = “Salut”
-## type des données (float)
+# type des données (float)
 pi = 3.14159
 
-## conversion des données
+# conversion des données
 nombrePair = 2
-## convertir en réel
+# convertir en réel
 float (nombrePair)
-## convertir en string
+# convertir en string
 str (nombrePair)
 
-## convertir en entier
+# convertir en entier
 pi = 3,14159
 int (pi)
 3
@@ -175,7 +183,7 @@ int (pi)
 | Opérateurs logiques     | and	or	not |
 | Opérateurs de comparaison | <	>	<=	>=	==	!=	is	is not |
 
-``` python=
+``` python
 nombrePair = 2
 155 > nombrePair
 True
@@ -185,7 +193,223 @@ True
 Sauf mentions explicites, les instructions d’un programme s’exécutent les unes après les autres, dans l’ordre où elles ont été écrites à l’intérieur du script.
 
 On parle de séquence d’instructions ou de flux d’exécution.
-Il existe également des constructions qui modifient le flux d’exécution, les **instructions de contrôle de flux**.
+Il existe également des constructions qui modifient le flux d’exécution, les **instructions de contrôle de flux**. Ces instructions ou blocs d’instructions correspondent à un ensemble d’instructions lues de façon classique (séquentielle), mais qui peut être exécuté une ou plusieurs fois
 
+Deux types d'instruction de contrôle de flux:
+- La **sélection** (ou exécution conditionnelle)
+- La **répétition** (ou boucle)
 
+```python
+# la séquence d'instruction
+a, b = 3, 7
+a  = b
+b = a
+print (a,b)
+```
+Attention à la tabulation, l’indentation fait partie de la syntaxe !
 
+```python
+# instruction de contrôle de type sélection
+a = 20
+if (a > 100):
+    print("a sup. a 100")
+else:
+    print("a inf. a 100")
+```
+```python
+# instruction de contrôle de type répétition
+a, b, c = 1, 1, 1
+while c < 11 :
+    print (b)
+    a, b, c = b, a+b, c +1
+```
+
+## Exécution conditionnelle
+Si nous voulons écrire des scripts utiles, il faut des techniques permettant d’aiguiller 
+le déroulement du script dans différentes directions en fonction des circonstances rencontrées
+L'idée est de dire que si cette variable a telle valeur alors faire cela sinon ceci. 
+
+```python
+# condition est respectée  
+a = 10 
+if a > 5: 
+    a = a + 1 
+a 
+11 
+
+# condition n’est pas respectée  
+a = 3
+if a > 5: 
+    a = a + 1 
+a 
+3 
+```
+```python
+# condition est respectée  
+a = 20
+if a > 5: 
+    a = a + 1 
+else: 
+    a = a - 1  
+a 
+21 
+```
+| Opérateurs | Signification | 
+| -------- | -------- | 
+| ==     | égal à     | 
+| !=     | différent de     | 
+| >     | strictement supérieur à     | 
+| >=     | supérieur ou égal à     | 
+| <     | strictement inférieur      | 
+| <=     | inférieur ou égal à     | 
+
+```python
+# tester les conditions
+a = 5
+a == 5
+True
+3 == 4
+False
+v = 7
+v > 5 and v < 10
+True
+v = 11
+v > 5 or v > 100
+True
+a, b, c = 1, 10, 100
+a < b < c
+True
+```
+
+## Les répétitions (boucles)
+L’une des tâches que les machines font le mieux est la répétition de tâches identiques sans erreur. 
+Elles permettent de répéter une ou plusieurs instructions plusieurs fois. 
+
+- La ***boucle for***: elle permet de faire des itérations sur un élément, comme une chaîne de caractères ou une liste. 
+
+- La ***boucle while***: "while" signifie "Tant que". Pour créer une boucle, il faut donc utiliser ce mot clé suivi d'une condition qui dit quand la boucle s'arrête. 
+
+```python
+# instructions répétitives (while)
+i = 0 
+while i < 2 :  
+    print(" J’aime la géographie")
+    i = i +1 
+J’aime la géographie
+J’aime la géographie
+```
+
+```python
+# instructions répétitives (for)
+v = "GEO"
+for lettre in v :  
+    print(lettre)
+G
+E
+O
+```
+
+## Les listes
+Comme les tuples ou les dictionnaires, la liste est simplement un ensemble ordonné d’objets.
+Les objets d’une liste peuvent être de différents types.
+Les listes peuvent être modifiées (ajout, suppression, …).
+Les éléments d’une liste sont accessibles en utilisant un index (entier non négatif basé zéro)
+
+```python
+liste = [] # définir une liste vide
+liste = [1,2,3] # définir une liste composée de trois éléments
+liste
+[1,2,3] 
+liste.append("ok") #ajouter une valeur à  la liste
+liste
+[1,2,3, ‘ok’] 
+liste[0] #afficher le premier élément
+1
+type(liste[0])
+int
+liste[1] = 2.8 # modifier une valeur
+liste
+[1,2.8,3,’ok’] 
+del liste[3] #supprimer une valeur
+liste
+[1,2.8,3] 
+len(liste) #afficher la longueur de la liste
+  3
+```
+## Commentaires
+Un programmeur veille toujours à insérer un grand nombre de commentaires dans ses scripts. 
+
+En procédant ainsi, non seulement il facilite la compréhension de ses algorithmes pour d’autres lecteurs éventuels,
+mais encore il se force lui-même à avoir les idées plus claires
+
+Ils permettent également de justifier certains choix ainsi que le fonctionnement de certains blocs. 
+
+```python
+# un commentaire sur une ligne
+
+# un commentaire sur plusieurs lignes
+# un commentaire sur plusieurs lignes
+# un commentaire sur plusieurs lignes  
+ 
+"""
+    Autre type de commentaires sur plusieurs lignes, docstrings. 
+    Pour la description d’une fonction par exemple.
+    C’est une façon pratique d’ajouter de la documentation à des fonctions,
+    classes...
+    Très utile aux utilisateurs ainsi qu´aux développeurs du code.
+"""
+
+def une_fonction():
+    """ Fonction inutile et vide pour illustrer la notion de docstring
+    """
+    return(None)
+
+print (une_fonction.__doc__) # affiche le docstring
+help (une_fonction) # idem=
+```
+
+## Les fonctions
+L’un des concepts les plus importants en programmation est celui de fonction.
+Pour faire simple, une fonction est une suite d'instructions que l'on peut appeler avec un nom.
+
+On distingue les fonctions prédéfinies (print, input, …) et les fonctions « originales ».
+
+Les avantages sont nombreux:
+- Moins de lignes		
+- Modularité accrue		
+- Code plus fiable
+
+``` python
+# Fonction sans paramètres 
+def indique_mon_age():
+    Return 30
+indique_mon_age()
+ 30
+ 
+Fonction avec paramètres obligatoires
+def augmente_mon_age(a = 1, b):
+    Return 30 + a + b 
+indique_mon_age(2)
+33
+```
+
+## Variable globale et locale
+- ***Variable globale***: les variables définies à l’extérieur d’une fonction sont des variables globales. Leur contenu est « visible » de l’intérieur d’une fonction, mais la fonction ne peut pas le modifier.
+- ***Variable locale***: variable à l’intérieur d’un corps d’une fonction, ces variables ne sont accessibles qu’à la fonction elle-même,  on parle de variables locales à la fonction
+
+```python
+def mask():
+    p = 20
+    print(p,q)
+p, q = 15, 38
+mask()
+20 38
+print (p,q)
+15 38 
+
+x = “hello”  
+def test():
+    print(x)
+test()
+hello
+```
