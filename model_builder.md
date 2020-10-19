@@ -1,6 +1,6 @@
 # Chaîne de traitements de QGIS
 
-![algo](images/5.gif)
+![algo](images/5.png)
 
 ```python
 ###########################################################
