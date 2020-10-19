@@ -1,38 +1,30 @@
----
-layout: default
----
+# **Géomatique - SIG et Python** 
 
-Text can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
+Les systèmes d’informations géographiques (QGIS, ArcGIS, MapINFO) offrent de nombreux outils pour créer, stocker, afficher et analyser. Sur ce dernier point, les SIG sont très rapidement limités. En effet, le géomaticien/géographe est souvent amené à automatiser une chaîne de traitements géomatiques sur un grand nombre de données et/ou à développer ses propres outils pour répondre à une problématique. Ce cours a pour objectif de présenter le langage Python, le SIG QGIS et les librairies de traitements de l'information géographique associées via la réalisation d'une chaîne de traitements. 
 
-[Link to another page](./another-page.html).
-
-There should be whitespace between paragraphs.
-
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
-
-# Header 1
-
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### Header 3
-
+* Hello World in Java 
 ```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
+class HelloWorld {   
+     static public void main( String args[] ) { 
+     System.out.println( "Hello World!" );
+     }
+} 
 ```
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
+* Hello World in C++ (pre-ISO) 
+```c++
+#include <iostream.h> 
+
+main() 
+{ 
+     cout << "Hello World!" << endl; 
+     return 0; 
+} 
+```
+
+* Hello world in PHP 
+```php
+<?php 
+     echo 'Hello World!’; 
+?> 
 ```
