@@ -17,3 +17,14 @@ class HelloWorld {
      echo 'Hello World!’; 
 ?> 
 ```
+
+# Hello World in R 
+```r
+cat("Hello world\n") 
+```
+
+# Hello world in Python 3
+```python
+print ("Hello World") 
+```
+
