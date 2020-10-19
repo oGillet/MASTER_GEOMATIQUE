@@ -121,7 +121,6 @@ for i in prenom:
 
 print ('il y a',c,'prenoms avec plus de 6 caractères')
 
-
 # Definir une fonction simple (calcul de moyenne)
 def moyenneClasse(x):
     moyenne = round(sum(x) / len(x))
