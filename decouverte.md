@@ -29,7 +29,7 @@ print ("Hello World")
 * Web(Django, android)
 * Autres (Raspberry pi, scripting, ...)
 
-## Pourquoi programmer en Python ?
+## Pourquoi programmer avec Python ?
 
 - Python est un langage 
 - Portable 
