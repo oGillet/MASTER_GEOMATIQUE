@@ -11,17 +11,6 @@ class HelloWorld {
 } 
 ```
 
-* Hello World in C++ (pre-ISO) 
-```c++
-#include <iostream.h> 
-
-main() 
-{ 
-     cout << "Hello World!" << endl; 
-     return 0; 
-} 
-```
-
 * Hello world in PHP 
 ```php
 <?php 
