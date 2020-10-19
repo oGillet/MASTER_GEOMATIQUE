@@ -19,7 +19,7 @@ ROUGE  = BANDE 4
 NDVI = (PIR-ROUGE)/(PIR+ROUGE)
 Raster -> Calculatrice raster 
 ```
-- Reprojeter une couche ()
+- Reprojeter une couche
 ```
 Vecteur -> Outils de gestion de données -> Reprojeter une couche
 ```
