@@ -1,6 +1,6 @@
 ## "Hello World" dans différents langages
 
-> Hello World in Java 
+- Hello World in Java 
 ```javascript
 class HelloWorld {   
      static public void main( String args[] ) { 
@@ -8,17 +8,17 @@ class HelloWorld {
      }
 } 
 ```
-> Hello world in PHP 
+- Hello world in PHP 
 ```php
 <?php 
      echo 'Hello World!’; 
 ?> 
 ```
-> Hello World in R 
+- Hello World in R 
 ```r
 cat("Hello world\n") 
 ```
->Hello world in Python 3
+- Hello world in Python 3
 ```python
 print ("Hello World") 
 ```
