@@ -7,9 +7,29 @@
 
 ![résultat](images/3.png)
 
+***Données (Inputs)***
+- Image satellite Landsat 8 de La Rochelle (raster, EPSG::32630)
+- Donnée vectorielle délimitant la zone d'étude (vecteur, polygone, EPSG::4326)
 
+***Instructions (outils SIG)***
+- Calculatrice raster 
+```
+PIR = Bande 5
+ROUGE  = BANDE 4 
+NDVI = (PIR-ROUGE)/(PIR+ROUGE)
+Raster -> Calculatrice raster 
+```
+- Reprojeter une couche ()
+```
+Vecteur -> Outils de gestion de données -> Reprojeter une couche
+```
+- Découper un raster selon un couche de masquage
 
-![algo](images/.6png)
+```
+Raster -> Extraction -> Découper un raster selon un couche de masquage
+```
+
+![algo](images/5.png)
 
 ```python
 ###########################################################
