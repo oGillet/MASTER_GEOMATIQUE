@@ -1,9 +1,12 @@
 # Chaîne de traitements de QGIS
 
+![objectif](images/6.png)
+
 ***Objectifs***
 - Calculer l'indice de végétation par différence normalisée (NDVI).
 - Reprojeter le shapefile de notre zone d'étude (EPSG::4326 vers EPSG::4326).
 - Découper l'indice de végétation à partir d'une couche de masquage. 
+L'objectif principal est de manipuler/traiter les objects spatialisés, vecteurs comme rasteurs, via Python.
 
 ![algo](images/5.png)
 
@@ -30,8 +33,6 @@ Raster -> Extraction -> Découper un raster selon un couche de masquage
 ```
 ***Données (Outpus)***
 - L'indice de végétation par différence normalisée (NDVI) sur La Rochelle
-
-![objectif](images/6.png)
 
 ```python
 ###########################################################
