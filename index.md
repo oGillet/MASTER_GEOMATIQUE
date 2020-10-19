@@ -4,6 +4,6 @@ Les systèmes d’informations géographiques (QGIS, ArcGIS, MapINFO) offrent de
 
 - Découverte des bases de l'algorithmique et du langage Python [Cliquez ici](./decouverte.html).
 - Exercice n°1  - Assimiler les principaux concepts de python [Cliquez ici](./exercice_1.html).
-- Exercice n°2  - Réaliser le jeu du pendu [Cliquez ici](./exercice_2.html).
-- Première chaîne de traitements avec le model builder de QGIS [Cliquez ici](./model_builder.html).
-
+- Exercice n°2  - Réaliser des mini jeux [(jeu du pendu, jeu du + ou -)](./exercice_2.html).
+- Première chaîne de traitements avec le model builder de QGIS [(Click button, Model Builder, PyGIS)](./model_builder.html).
+- Première chaîne de traitements avec le model builder de QGIS [(GDAL/OGR)](./model_builder.html).
