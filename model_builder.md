@@ -5,7 +5,7 @@
 - Reprojeter le shapefile de notre zone d'étude (EPSG::4326 vers EPSG::4326).
 - Découper l'indice de végétation à partir d'une couche de masquage. 
 
-![résultat](images/3.png)
+![algo](images/5.png)
 
 ***Données (Inputs)***
 - Image satellite Landsat 8 de La Rochelle (raster, EPSG::32630)
@@ -28,8 +28,10 @@ Vecteur -> Outils de gestion de données -> Reprojeter une couche
 ```
 Raster -> Extraction -> Découper un raster selon un couche de masquage
 ```
+***Données (Outpus)***
+- L'indice de végétation par différence normalisée (NDVI) sur La Rochelle
 
-![algo](images/5.png)
+![objectif](images/6.png)
 
 ```python
 ###########################################################
@@ -43,7 +45,7 @@ import qgis.utils
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 
 # Fixer le répertoire courant
-os.chdir()
+os.chdir('')
 
 # Définir le nom du raster 
 fileName = "LC08_L1TP_201028_20171117_20171122_01_T1_B5.tif"
@@ -150,5 +152,4 @@ rNDVI_CLIPlayer = iface.addRasterLayer('ndvi_QGIS_clip.tif', "NDVI_CLIP")
 # Vérifier l'ouverture du raster
 if not rNDVI_CLIPlayer.isValid():
     print("Layer failed to load!")
-
 ```
