@@ -94,15 +94,15 @@ L’affectation d’une valeur à une variable se fait par l’opérateur = (nom
 # affectation simultanée
 x = y = 7
 x
-7
+>>> 7
 y 
-7
+>>> 7
 ```
 ``` python
 # affectation parallèles
 a, b = 4, 8.33
 a
-4
+>>> 4
 ```
 
 ## Les noms de variables et mots réservés
@@ -118,7 +118,7 @@ Certaines mots sont réservés comme global, False, True, as, return, from, if, 
 nombrePair = 2
 epsg = RGF93 
 n = 7
-msg = “Salut”
+msg = "Salut"
 pie = 3.14159
 ```
 ``` python
@@ -156,9 +156,9 @@ a = 5
 ```python
 # type de donnée (integer)
 nombrePair = 2  
-# type des données (String) 
+# type de donnée (String) 
 msg = “Salut”
-# type des données (float)
+# type de donnée (float)
 pi = 3.14159
 
 # conversion des données
@@ -169,13 +169,11 @@ float (nombrePair)
 str (nombrePair)
 
 # convertir en entier
-pi = 3,14159
+pi = 3.14159
 int (pi)
-3
+>>> 3
 ```
-
 ## Les opérateurs
-
 
 | Type | Exemple |
 | -------- | -------- |
@@ -186,7 +184,7 @@ int (pi)
 ``` python
 nombrePair = 2
 155 > nombrePair
-True
+>>> True
 ```
 
 ## Contrôle du flux d’exécution
@@ -235,14 +233,14 @@ a = 10
 if a > 5: 
     a = a + 1 
 a 
-11 
+>>> 11 
 
 # condition n’est pas respectée  
 a = 3
 if a > 5: 
     a = a + 1 
 a 
-3 
+>>> 3 
 ```
 ```python
 # condition est respectée  
@@ -252,8 +250,9 @@ if a > 5:
 else: 
     a = a - 1  
 a 
-21 
+>>> 21 
 ```
+
 | Opérateurs | Signification | 
 | -------- | -------- | 
 | ==     | égal à     | 
@@ -267,18 +266,18 @@ a
 # tester les conditions
 a = 5
 a == 5
-True
+>>> True
 3 == 4
-False
+>>> False
 v = 7
 v > 5 and v < 10
-True
+>>> True
 v = 11
 v > 5 or v > 100
-True
+>>> True
 a, b, c = 1, 10, 100
 a < b < c
-True
+>>> True
 ```
 
 ## Les répétitions (boucles)
@@ -295,18 +294,17 @@ i = 0
 while i < 2 :  
     print(" J’aime la géographie")
     i = i +1 
-J’aime la géographie
-J’aime la géographie
+>>> J’aime la géographie
+>>> J’aime la géographie
 ```
-
 ```python
 # instructions répétitives (for)
 v = "GEO"
 for lettre in v :  
     print(lettre)
-G
-E
-O
+>>> G
+>>> E
+>>> O
 ```
 
 ## Les listes
@@ -319,22 +317,22 @@ Les éléments d’une liste sont accessibles en utilisant un index (entier non 
 liste = [] # définir une liste vide
 liste = [1,2,3] # définir une liste composée de trois éléments
 liste
-[1,2,3] 
+>>> [1,2,3] 
 liste.append("ok") #ajouter une valeur à  la liste
 liste
-[1,2,3, ‘ok’] 
+>>> [1,2,3, ‘ok’] 
 liste[0] #afficher le premier élément
-1
+>>> 1
 type(liste[0])
-int
+>>> int
 liste[1] = 2.8 # modifier une valeur
 liste
-[1,2.8,3,’ok’] 
+>>> [1,2.8,3,’ok’] 
 del liste[3] #supprimer une valeur
 liste
-[1,2.8,3] 
+>>> [1,2.8,3] 
 len(liste) #afficher la longueur de la liste
-  3
+>>> 3
 ```
 ## Commentaires
 Un programmeur veille toujours à insérer un grand nombre de commentaires dans ses scripts. 
@@ -384,13 +382,13 @@ Les avantages sont nombreux:
 def indique_mon_age():
     Return 30
 indique_mon_age()
- 30
+>>> 30
  
 Fonction avec paramètres obligatoires
 def augmente_mon_age(a = 1, b):
     Return 30 + a + b 
 indique_mon_age(2)
-33
+>>> 33
 ```
 
 ## Variable globale et locale
@@ -403,13 +401,178 @@ def mask():
     print(p,q)
 p, q = 15, 38
 mask()
-20 38
+>>> 20 38
 print (p,q)
-15 38 
+>>> 15 38 
 
 x = “hello”  
 def test():
     print(x)
 test()
-hello
+>>> hello
+```
+
+## Les packages
+Fonctions intégrées (int, float, input, print)
+Définition des modules : fichier (extension ’.py’) contenant des définitions de fonctions que l’on peut importer et utiliser dans nos programmes. Les packages correspondent à une collection de modules
+
+- https://stackoverflow.com/
+- https://pcjericks.github.io/py-gdalogr-cookbook/
+- https://gdal.org/python/
+
+```python=
+from math import * # On importe toutes les fonctions du package math  
+import pandas  as pd # On importe toutes les fonctions du module pandas sous le nom pd  
+from math import cos, sqrt # On importe toutes les fonctions cosinus et racine carré du module math
+```
+## Découverte de python
+
+```python
+# 1 - afficher la version de Python
+import sys
+print (sys.version)
+
+# 2 - afficher mon nom et mon prenom
+print ('Olivier','Gillet')
+
+# 3 - déclarer une variable
+epsg = 2154
+print (epsg)
+
+# 4 - calculer une moyenne
+x = 314
+y = 569
+moyenne = (x+y)/2
+print ('La moyenne est de',moyenne)
+
+# 5 - déclaraton multiple
+a, b = 254, 12345
+print (a,b)
+
+# 6 - déclaration simultanee
+a=b=c=epsg
+print(epsg)
+print('Le premier SCR est',a,'et le second est',b)
+
+# 7 - créer une liste
+epsgCode = [2154,4326,3942]
+print (epsgCode)
+src = ['rgf93','wgs84','rgf93cc42']
+print (src)
+
+# 8 - compter le nombre d'elements dans la liste
+nbelements = (len(epsgCode))
+print("J'ai",nbelements,'dans ma liste')
+
+# 9 - ajouter un element
+epsgCode.append(3944)
+epsgCode.append(2154)
+print(epsgCode)
+
+# 10 - compter occurences 2154
+nb2154=epsgCode.count(2154)
+print('il y a',nb2154,'codes 2154')
+
+# 11 - supprimer élément
+del epsgCode[4] 
+
+# 12 - renverser une liste
+epsgCode.reverse()
+print (epsgCode)
+
+# 13 - condition "if"
+hauteurEau, maxObserve = 150, 100
+if hauteurEau > maxObserve :
+    print ("Crue du siecle")
+else :
+    print ("pas interessant")
+
+# 14 - exécution conditionnelle et répétition (for)
+# creer une liste
+epsg3000 = []
+# boucler sur les éléments de la liste epsgCode 
+for code in epsgCode :
+    # afficher l'élément
+    print (code)
+    # condition si sup. 3000, ajouter à la nouvelle liste
+    if code > 3000 :
+        epsg3000.append(code)
+# afficher la nouvelle liste
+print (epsg3000)
+
+# 15 - répétition (while) pour supprimer les éléments
+while len(epsg3000) > 0 :
+    del epsg3000[0]
+# afficher la liste
+print (len(epsg3000))
+
+# 16 - compter le nombre de T
+tmp = 'QGIS et Python'
+nbT = tmp.count('t')
+print ('Il y a',nbT,'t')
+
+# 17 - remplacer les espaces par des *
+tmp='QGIS et Python'
+print (tmp.replace(' ','*',2))
+
+# 18 - renverser la chaine de caractère
+print ("QGIS et Python"[::-1])
+
+# 19 - trier par ordre croissant la liste
+liste = [99,22,587,5,1547,100289,3]
+print (sorted(liste))
+
+# 20 - Afficher le valeur maximale d'une liste d'entiers
+liste = [99,22,587,5,1547,100289,3]
+print(max(liste))
+```
+
+## Réaliser le jeu du pendu
+```python
+# définir une fonction pour obtenir la position d'un caractère dans une chaîne
+def find(str, ch):
+    for i, ltr in enumerate(str):
+        if ltr == ch:
+            yield i
+
+print ('########################')
+print ('### Le jeu du pendu ####')
+print ('########################')
+
+# définir le mot à devinir
+mot = 'geographie'
+
+# déclarer d'autres variables nécessaire à l'exécution du code
+nbErreur = 10
+lettreTrouvee = 0
+nextLetter = True
+tmp = str('_'*len(mot))
+
+# démarrer le jeu
+while nextLetter:
+
+    # demander une lettre
+    print('')
+    l = input("Entrez une lettre ==> ")
+    
+    # vérifier si la lettre est dans le mot
+    nbLettre = mot.count(str(l))
+    if nbLettre > 0:
+        lettreTrouvee = lettreTrouvee + nbLettre
+        for index in list(find(mot, l)):
+            tmp = tmp[:index] + l + tmp[index + 1:]
+        print ('oui ' + tmp)
+    else :
+        nbErreur = nbErreur - 1
+        print ('non')
+    
+    
+    if lettreTrouvee == len(mot):
+        nextLetter = False
+        print ('')
+        print ('Gagné ! Le mot est bien ' + mot)
+    elif nbErreur == 0:
+        print ('')
+        print ('Perdu ! Le mot est ' + mot)
+        nextLetter = False
 ```
