@@ -5,7 +5,7 @@ Les systèmes d’informations géographiques (QGIS, ArcGIS, MapINFO) offrent de
 ## "Hello World" dans différents langages
 
 > Hello World in Java 
-```js=
+```javascript
 class HelloWorld {   
      static public void main( String args[] ) { 
      System.out.println( "Hello World!" );
@@ -13,17 +13,17 @@ class HelloWorld {
 } 
 ```
 > Hello world in PHP 
-```php=
+```php
 <?php 
      echo 'Hello World!’; 
 ?> 
 ```
 > Hello World in R 
-```r=
+```r
 cat("Hello world\n") 
 ```
 >Hello world in Python 3
-```python=
+```python
 print ("Hello World") 
 ```
 
@@ -253,6 +253,8 @@ a
 >>> 21 
 ```
 
+test
+
 | Opérateurs | Signification | 
 | -------- | -------- | 
 | ==     | égal à     | 
@@ -292,10 +294,10 @@ Elles permettent de répéter une ou plusieurs instructions plusieurs fois.
 # instructions répétitives (while)
 i = 0 
 while i < 2 :  
-    print(" J’aime la géographie")
+    print(" Jaime la géographie")
     i = i +1 
->>> J’aime la géographie
->>> J’aime la géographie
+>>> J aime la géographie
+>>> J aime la géographie
 ```
 ```python
 # instructions répétitives (for)
@@ -522,9 +524,42 @@ print ("QGIS et Python"[::-1])
 liste = [99,22,587,5,1547,100289,3]
 print (sorted(liste))
 
-# 20 - Afficher le valeur maximale d'une liste d'entiers
+# 20 - afficher le valeur maximale d'une liste d'entiers
 liste = [99,22,587,5,1547,100289,3]
 print(max(liste))
+
+# 21 - calculer la moyenne d'âge,le nombre de fille et de garçon ainsi que les 
+# prénoms sup. à 6 caractères
+
+# définir les listes
+ages = [22,25,26,35,47,41]
+prenom = ['pierre', 'paul', 'anna', 'alexandra', 'alexandre', 'laure']
+sexe = ['M','M','F','F','M','F']
+
+# calculer et afficher la moyenne d'âge
+print ("La moyenne est de =", round(sum(ages) / len(ages)))
+
+#  afficher le nombre de fille et de garçons
+print ("il y a ", sexe.count('M') , "homme()s et il y a", sexe.count('F'), 'femme(s)')
+
+# Compter le nombre de caractère
+c = 0
+for i in prenom:
+    if len(i) > 6:
+        c = c + 1
+
+print ('il y a',c,'prenoms avec plus de 6 caractères')
+
+
+# Definir une fonction simple (calcul de moyenne)
+def moyenneClasse(x):
+    moyenne = round(sum(x) / len(x))
+    return moyenne
+
+# Appel de fonction 
+xMean = moyenneClasse(x = ages)
+print ("La moyenne est de =", xMean)
+print ("La moyenne est de =", moyenneClasse(x = ages))
 ```
 
 ## Réaliser le jeu du pendu
@@ -566,7 +601,7 @@ while nextLetter:
         nbErreur = nbErreur - 1
         print ('non')
     
-    
+    # vérifier le résultat
     if lettreTrouvee == len(mot):
         nextLetter = False
         print ('')
