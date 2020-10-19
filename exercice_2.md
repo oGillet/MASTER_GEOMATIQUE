@@ -13,7 +13,7 @@ print ('########################')
 # définir le mot à devinir
 mot = 'geographie'
 
-# déclarer d'autres variables nécessaire à l'exécution du code
+# déclarer d'autres variables nécessaires à l'exécution du code
 nbErreur = 10
 lettreTrouvee = 0
 nextLetter = True
