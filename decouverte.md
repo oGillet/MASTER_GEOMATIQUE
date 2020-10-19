@@ -1,3 +1,5 @@
+# Les bases de l'algorithmique et du langage Python
+
 ## "Hello World" dans différents langages
 
 ```javascript
@@ -9,7 +11,7 @@ class HelloWorld {
 ```
 ```php
 <?php 
-     echo 'Hello World!’; 
+     echo "Hello World!"; 
 ?> 
 ```
 
@@ -127,7 +129,7 @@ None = 12
 print (epsg)
 ```
 
-# Typage dynamique
+## Typage dynamique
 Sous python , il n’est pas nécessaire de définir le type des variables, **typage dynamique**,en opposition au typage statique.
 
 ``` c
