@@ -164,7 +164,7 @@ fields.append(QgsField("Y", QVariant.String))
 # Ajouter un attribut avec la valeur du NDVI
 fields.append(QgsField("NDVI", QVariant.String))
 # Ajouter des attributs issue de la classification
-fields.append(QgsField("CLASSIF", QVariant.Int))
+fields.append(QgsField("CLASSIF", QVariant.String))
 fields.append(QgsField("TYPE", QVariant.String))
 
 # Créer le shapefile
