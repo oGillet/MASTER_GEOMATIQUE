@@ -51,6 +51,6 @@ Centroïdes -> PointSamplingTool
 
 ***Résultats (Outputs)***
 - L'indice de végétation par différence normalisée (NDVI) sur La Rochelle (donnée matricielle)
-- Transect vertical contenant la valeur des NDVIs (donnée vetorielle)
+- Transect vertical des valeurs NDVIs (donnée vetorielle)
 
 ![résultat](images/7.png)
