@@ -152,7 +152,7 @@ pixelSizeY = rNDVI_CLIPlayer.rasterUnitsPerPixelY()
 spatialExtent = rNDVI_CLIPlayer.extent()
 originX, originY = spatialExtent.xMinimum(), spatialExtent.yMaximum()
 
-# 
+# Obtenier les valeurs du NDVI 
 provider = rNDVI_CLIPlayer.dataProvider()
 block = provider.block(1, spatialExtent, w, h)
 
