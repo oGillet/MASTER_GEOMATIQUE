@@ -11,4 +11,4 @@ Les systèmes d’informations géographiques (QGIS, ArcGIS, MapINFO) offrent de
 - Première chaîne de traitements [(Click button, Model Builder)](./model_builder.html).
 - Manipulation des données matricielles et vectorielles avec [PyGIS](./pyGis.html)
 - Manipulation des données matricielles et vectorielles avec [GDAL/OGR](./gdalOgr.html).
-- Calculer les températures de surface et realiser un transect horizontal.
+- Calculer les températures de surface et realiser un transect horizontal [(Cliquez ici)](./exercice_3.html).
