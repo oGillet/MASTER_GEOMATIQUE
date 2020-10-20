@@ -23,6 +23,7 @@ L'objectif principal est de manipuler/traiter les objects spatialisés, vecteurs
 
 ***Instructions (outils SIG)***
 1. Calculatrice raster 
+
 ```
 PIR = Bande 5
 ROUGE  = BANDE 4 
@@ -30,7 +31,8 @@ NDVI = (PIR-ROUGE)/(PIR+ROUGE)
 Raster -> Calculatrice raster 
 ```
 
-2. Reprojeter une couche ()
+2. Reprojeter une couche
+
 ```
 Vecteur -> Outils de gestion de données -> Reprojeter une couche
 ```
