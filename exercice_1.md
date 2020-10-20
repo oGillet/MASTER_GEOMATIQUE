@@ -1,4 +1,4 @@
-# Découverte de python
+# Exercice n°1 - Découverte de python
 
 ```python
 # 1 - afficher la version de Python
@@ -121,6 +121,7 @@ for i in prenom:
 
 print ('il y a',c,'prenoms avec plus de 6 caractères')
 
+
 # Definir une fonction simple (calcul de moyenne)
 def moyenneClasse(x):
     moyenne = round(sum(x) / len(x))
@@ -130,4 +131,15 @@ def moyenneClasse(x):
 xMean = moyenneClasse(x = ages)
 print ("La moyenne est de =", xMean)
 print ("La moyenne est de =", moyenneClasse(x = ages))
+
+# Definir une fonction simple (valeur maximale)
+def maFonctionMax(x):
+    maxValue = 0
+    for i in x:
+        if i > maxValue:
+            maxValue = i
+    return maxValue
+
+# Appel de fonction 
+print ('La valeur maximale est '+ str(maFonctionMax([1,2,3,1454,5])))
 ```
