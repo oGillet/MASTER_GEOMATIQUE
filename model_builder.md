@@ -1,7 +1,5 @@
 # Chaîne de traitements de QGIS
 
-![objectif](images/6.png)
-
 ***Objectifs***
 - Calculer l'indice de végétation par différence normalisée (NDVI).
 - Reprojeter le shapefile de notre zone d'étude (EPSG::4326 vers EPSG::4326).
