@@ -1,4 +1,6 @@
 # PyGIS
+
+## Données matricielles
 ```python
 ###########################################################
 ####       Manipulation des données matricielles       ####
@@ -120,7 +122,7 @@ rNDVI_CLIPlayer = iface.addRasterLayer('ndvi_QGIS_clip.tif', "NDVI_CLIP")
 if not rNDVI_CLIPlayer.isValid():
     print("Layer failed to load!")
     
- # Reprojeter le NDVI en RGF93
+# Reprojeter le NDVI en RGF93
 parameters = {"INPUT":'ndvi_QGIS_clip.tif',
                       "SOURCE_SRS":"EPSG:32630",
                       "TARGET_CRS":"EPSG:2154",
@@ -133,8 +135,10 @@ codeEpsg = rNDVI_CLIPlayer.crs().authid()
 
 # Vérifier la projection du raster
 if codeEpsg != 'EPSG:2154':
-    print("Layer failed to load!")
-    
+    print("Wrong EPSG!")
+```
+## Données vectorielles
+```python
 # Afficher le nombre de pixels
 w = rNDVI_CLIPlayer.width()
 h = rNDVI_CLIPlayer.height()
