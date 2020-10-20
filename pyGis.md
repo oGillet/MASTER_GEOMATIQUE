@@ -168,7 +168,7 @@ fields.append(QgsField("CLASSIF", QVariant.Int))
 fields.append(QgsField("TYPE", QVariant.String))
 
 # Créer le shapefile
-writer = QgsVectorFileWriter("points_QGIS_ndvi.shp", "UTF-8", fields, QgsWkbTypes.Point, rNDVI_CLIPlayer.crs(), driverName="ESRI Shapefile")
+writer = QgsVectorFileWriter("points_QGIS_ndvi_v.shp", "UTF-8", fields, QgsWkbTypes.Point, rNDVI_CLIPlayer.crs(), driverName="ESRI Shapefile")
 
 # Définir une colonne pour le transect vertical
 transect = w/2
@@ -201,7 +201,49 @@ for j in range(h):
 del writer
 
 # Charger et afficher le shapefile
-vlayer = iface.addVectorLayer("points_QGIS_ndvi.shp", "POINTS", "ogr")
+vlayer = iface.addVectorLayer("points_QGIS_ndvi_v.shp", "POINTS", "ogr")
+if not vlayer:
+    print("Layer failed to load!")
+ 
+# Créer un nouveau shapefile
+writer = QgsVectorFileWriter("points_QGIS_ndvi_h.shp", "UTF-8", 
+fields, QgsWkbTypes.Point, rNDVI_CLIPlayer.crs(), driverName="ESRI Shapefile")
+
+# Définir une colonne pour le transect vertical
+#transect = w/2
+transect = h/2
+# Définir la coordonnée X du transect
+#Xcoord = originX+pixelSizeX*transect
+Ycoord = originY-pixelSizeY*transect
+    
+# Boucler pour parcourir le transect et écrire la données dans le shapefile
+# Pour chaque ligne du de la colonne
+for j in range(w):
+    #Ycoord = originY-pixelSizeY*(j+0.5)
+    Xcoord = originX+pixelSizeX*(j-0.5)
+    # Obtenir la valeur du pixel
+    ndviValue = block.value(transect,j)
+    # Classifier en fonction de la valer du pixel
+    if ndviValue < 0:
+        typeClassification, valueClassification = "eau", 1
+    elif ndviValue > 0.25:
+        typeClassification, valueClassification = "vegetation", 3
+    else :
+        typeClassification, valueClassification = "mineral", 2
+    # Créer un entités
+    fet = QgsFeature()
+    # Fixer les coordonées du point
+    fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(Xcoord,Ycoord)))
+    # Ajouter les attributs
+    fet.setAttributes([Xcoord,Ycoord,ndviValue,typeClassification,valueClassification])
+    # Ecrire l'entité dans le shapefile
+    writer.addFeature(fet)
+  
+# Fermer le shapefile
+del writer
+
+# Charger et afficher le shapefile
+vlayer = iface.addVectorLayer("points_QGIS_ndvi_h.shp", "POINTS", "ogr")
 if not vlayer:
     print("Layer failed to load!")
 ```
