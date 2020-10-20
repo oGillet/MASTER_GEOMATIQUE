@@ -204,7 +204,11 @@ del writer
 vlayer = iface.addVectorLayer("points_QGIS_ndvi_v.shp", "POINTS", "ogr")
 if not vlayer:
     print("Layer failed to load!")
- 
+
+
+#/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
+#/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
+#/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
 # Créer un nouveau shapefile
 writer = QgsVectorFileWriter("points_QGIS_ndvi_h.shp", "UTF-8", 
 fields, QgsWkbTypes.Point, rNDVI_CLIPlayer.crs(), driverName="ESRI Shapefile")
