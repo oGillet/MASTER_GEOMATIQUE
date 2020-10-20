@@ -40,7 +40,8 @@ Raster -> Extraction -> Découper un raster selon un couche de masquage
 
 ```python
 ###########################################################
-####  Manipulation des données matricielles sous QGIS  ####
+####       Manipulation des données matricielles       ####
+####            et vectorielle avec PyGIS              ####
 ###########################################################
 
 # Charger les librairies
