@@ -2,10 +2,10 @@
 * Cheatsheet GDAL <a href="images/GDAL_CHEATSHEET_2020.pdf" download>Cliquez ici pour le télécharger</a>
 * Cheatsheet OGR <a href="images/OGR_CHEATSHEET_2020.pdf" download>Cliquez ici pour le télécharger</a>
 
+## Données matricielles et vectorielles
 ```python
 ###########################################################
-####       Manipulation des données matricielles       ####
-####           et vectorielle avec GDAL/OGR            ####
+####  Manipulation des données matricielles sous QGIS  ####
 ###########################################################
 
 # Charger les librairies
@@ -78,6 +78,7 @@ rNDVIlayer = gdal.Open("ndvi_GDAL.tif")
 #- Définir des variables pour découper le master
 gdal.Warp("ndvi_GDAL_clip.tif", rNDVIlayer, cutlineDSName='LA_ROCHELLE_AREA_POLYGON_UTM30n.shp',cropToCutline=True, dstNodata = 0)
 
+
 # Définir le système de projection
 RGF93 = 'PROJCS["RGF93 / Lambert-93",GEOGCS["RGF93",DATUM["Reseau_Geodesique_Francais_1993",SPHEROID["GRS 1980",6378137,298.257222101,AUTHORITY["EPSG","7019"]],TOWGS84[0,0,0,0,0,0,0],AUTHORITY["EPSG","6171"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.01745329251994328,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4171"]],UNIT["metre",1,AUTHORITY["EPSG","9001"]],PROJECTION["Lambert_Conformal_Conic_2SP"],PARAMETER["standard_parallel_1",49],PARAMETER["standard_parallel_2",44],PARAMETER["latitude_of_origin",46.5],PARAMETER["central_meridian",3],PARAMETER["false_easting",700000],PARAMETER["false_northing",6600000],AUTHORITY["EPSG","2154"],AXIS["X",EAST],AXIS["Y",NORTH]]'
 
@@ -94,7 +95,7 @@ proj = osr.SpatialReference(wkt=rNDVI_CLIPlayer.GetProjection())
 
 # Vérifier la projection du raster
 if proj.GetAttrValue('AUTHORITY',1) != '2154':
-    print("Layer failed to load!")
+    print("Wrong EPSG")
     
 # Afficher le nombre de pixels
 w = rNDVI_CLIPlayer.RasterXSize
