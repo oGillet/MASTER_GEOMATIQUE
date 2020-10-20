@@ -1,4 +1,5 @@
-## Réaliser le jeu du pendu
+# Exercices
+## Jeu du pendu
 ```python
 # définir une fonction pour obtenir la position d'un caractère dans une chaîne
 def find(str, ch):
@@ -47,3 +48,4 @@ while nextLetter:
         print ('Perdu ! Le mot est ' + mot)
         nextLetter = False
 ```
+## Jeu du + ou +
