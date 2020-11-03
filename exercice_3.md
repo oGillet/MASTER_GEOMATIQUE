@@ -48,6 +48,7 @@ TEMPERATURE = (rBRIGHTNESS / (1 + (0.00115 * rBRIGHTNESS / 1.4388) * ln(rEMISSIV
 ***Résultats attendus (Outputs)***
 - Un bref rapport présentant la chaîne de traitements
 - Le model builder pour calculer les températures de surface seulement (fichier en .model3)
+- Le script python pour calculer les températures de surface seulement et créer les transects (PyGIS ou GDAL/OGR)
 - Les températures de surface sur La Rochelle (donnée matricielle découpée et reprojetée, EPSG::2154)
 - Transect verticale et horizontal des températures de surface sur la zone d'étude réduite (données vetorielles avec 4 attributs, EPSG::2154)
 
