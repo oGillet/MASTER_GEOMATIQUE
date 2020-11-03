@@ -1,4 +1,12 @@
-# Calcul des températures de surface
+***Objectifs***
+- Calculer les températures de surface.
+- Réaliser un transect vertical et horizontal des températures.
+
+***Données (Inputs)***
+- Images satellitaires Landsat 8 (PIR, RED, TIR, raster, EPSG::32630)
+- Donnée vectorielle délimitant la zone d'étude (vecteur, polygone, EPSG::4326)
+
+***Instructions pour calculer des températures de surface***
 1. ETAPE n°1
 
 ```
@@ -35,3 +43,18 @@ EMISSIVITY = 0.004 * rPROPORTIONVEGlayer@1 + 0.986
 TEMPERATURE = (rBRIGHTNESSlayer@1 / (1 + (0.00115 * rBRIGHTNESSlayer@1 / 1.4388) * 
 				ln(rEMISSIVITYlayer@1)))
 ```
+
+***Résultats attendus (Outputs)***
+- Un bref rapport présentant la chaîne de traitements
+- Le model builder pour calculer les températures de surface seulement (fichier en .model3)
+- Les températures de surface sur La Rochelle (donnée matricielle découpée et reprojetée, EPSG::2154)
+- Transect verticale et horizontal des températures de surface sur la zone d'étude réduite (données vetorielles avec 4 attributs, EPSG::2154)
+
+| ID  | X      | Y       | TEMPERATURE    |
+| --- | ------ | ------- | -------------- |
+| 1   | 642034 | 1761994 |  29            |
+
+
+
+
+
