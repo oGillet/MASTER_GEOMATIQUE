@@ -53,7 +53,84 @@ TEMPERATURE = (rBRIGHTNESS / (1 + (0.00115 * rBRIGHTNESS / 1.4388) * ln(rEMISSIV
 | --- | ------ | ------- | -------------- |
 | 1   | 642034 | 1761994 |  29            |
 
+```python
+# Charger les librairies
+import gdal, ogr, osr
+import sys
+import numpy as np
+import os
 
+def saveRaster(data, filename, resolution, coordX, coordY, scr_projection):
+    """
+    Fonction pour sauvergarder des tableaux a 2 dimension en raster
+    data => tableau a sauvegarder
+    resolution => resolution spatiale du raster
+    coordX/coordY => coordonnees du point point en haut a gauche
+    xPixel => nombres de lignes
+    yPixel => nombres de colonnes
+    scr_projection => un système de projection
+    Cette fonction a 6 parametres obligatoires et ne retourne rien
 
+    """
+    # Recuperer certaines informations importantes
+    xPixel = np.shape(data)[1]
+    yPixel = np.shape(data)[0]
+    # Enregistrement de l'image
+    driver = gdal.GetDriverByName('GTiff')
+    data_tf = driver.Create(filename, xPixel, yPixel, 1, gdal.GDT_Float32)
+    if data_tif is None:
+        print("Error : impossible to create the file !\n")
+        sys.exit(1)
+    geotransform = (coordX, resolution, 0, coordY, 0, -resolution)
+    # Reprojection de l'image
+    data_tif.SetGeoTransform(geotransform)
+    # Defnition du SCR
+    data_tif.SetProjection(scr_projection)
+    # Ecriture du raster
+    data_tif.GetRasterBand(1).WriteArray(data)
+    # Fermeture du fichier
+    del data_tif
+    print('Le fichier ' + filename + ' est sauvegardé')
+
+# Fixer le répertoire courant
+os.chdir("/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\\")
+
+# Charger les rasters 
+rPIRlayer = gdal.Open("LC08_L1TP_201028_20171117_20171122_01_T1_B5.TIF")
+rREDlayer = gdal.Open("LC08_L1TP_201028_20171117_20171122_01_T1_B4.TIF")
+rTIRlayer = gdal.Open("LC08_L1TP_201028_20171117_20171122_01_T1_B5.TIF")
+
+#Vérifier l'ouverture des rasters
+if rPIRlayer is None or rREDlayer is None or rTIRlayer is None:
+    print('Could not open data')
+    sys.exit(1)
+
+#Obtenir les métadonnées des images satellitaires
+upperLeftx, pixelWidth, xskew, upperLefty, yskew, pixelHeight = rREDlayer.GetGeoTransform()
+rSCR = rPIRlayer.GetProjection()
+
+# Convertir la bande PIR en array
+aPIRlayer = rPIRlayer.ReadAsArray().astype(np.float32)
+# Convertir la bande RED en array
+aREDlayer = rREDlayer.ReadAsArray().astype(np.float32)
+# Convertir la bande RED en array
+aTIRlayer = rTIRlayer.ReadAsArray().astype(np.float32)
+
+#Calcul du NDVI
+NDVI = (aPIRlayer - aREDlayer) / (aPIRlayer + aREDlayer)
+
+#Sauvegarder le NDVI
+saveRaster(data=NDVI, resolution=pixelWidth,
+           filename='NDVI.tif', coordX=upperLeftx, coordY=upperLefty,
+           scr_projection=rSCR)
+           
+#Calcul du NDVI
+TOA = 0.0003342 * aTIRlayer + 0.1
+
+#Sauvegarder le TOA
+saveRaster(data=TOA, resolution=pixelWidth,
+           filename='TOA.tif', coordX=upperLeftx, coordY=upperLefty,
+           scr_projection=rSCR)
+```
 
 
