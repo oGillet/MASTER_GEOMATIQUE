@@ -4,9 +4,9 @@
 
 ## Données matricielles et vectorielles
 ```python
-###########################################################
-####  Manipulation des données matricielles sous QGIS  ####
-###########################################################
+#################################################
+####  Manipulation des données matricielles  ####
+#################################################
 
 # Charger les librairies
 import gdal, ogr, osr
