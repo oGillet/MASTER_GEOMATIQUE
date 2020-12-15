@@ -80,7 +80,7 @@ def saveRaster(data, filename, resolution, coordX, coordY, scr_projection):
     yPixel = np.shape(data)[0]
     # Enregistrement de l'image
     driver = gdal.GetDriverByName('GTiff')
-    data_tf = driver.Create(filename, xPixel, yPixel, 1, gdal.GDT_Float32)
+    data_tif = driver.Create(filename, xPixel, yPixel, 1, gdal.GDT_Float32)
     if data_tif is None:
         print("Error : impossible to create the file !\n")
         sys.exit(1)
