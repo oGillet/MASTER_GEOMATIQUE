@@ -9,3 +9,4 @@ Les systèmes d’informations géographiques (QGIS, ArcGIS, MapINFO) offrent de
 - Exercice n°1  - Assimiler les principaux concepts de python [(Cliquez ici)](./exercice_1.html).
 - Exercice n°2  - Réaliser des mini jeux [(Jeu du pendu, jeu du + ou -, jeu de la Bataille)](./exercice_2.html).
 - Calculer les températures de surface [(Cliquez ici)](./exercice_3.html).
+- Première chaîne de traitements [(Click button, Model Builder)](./model_builder.html).
