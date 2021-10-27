@@ -132,14 +132,6 @@ xMean = moyenneClasse(x = ages)
 print ("La moyenne est de =", xMean)
 print ("La moyenne est de =", moyenneClasse(x = ages))
 
-# Definir une fonction simple (valeur maximale)
-def maFonctionMax(x):
-    maxValue = 0
-    for i in x:
-        if i > maxValue:
-            maxValue = i
-    return maxValue
-
 # Appel de fonction 
 print ('La valeur maximale est '+ str(maFonctionMax([1,2,3,1454,5])))
 ```
