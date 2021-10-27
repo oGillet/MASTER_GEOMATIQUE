@@ -14,24 +14,11 @@ import qgis.utils
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 
 # Fixer le répertoire courant
-os.chdir('')
+os.chdir('/home/gilleol2/Bureau/LC08_L1TP_203026_20170827_20170914_01_T1')
 
-# Définir le nom du raster 
-fileName = "LC08_L1TP_201028_20171117_20171122_01_T1_B5.tif"
-# Objet qui contient le contient le chemin d'accès
-fileInfo = QFileInfo(fileName)
-# Récuperer juste le nom du fichier
-baseName = fileInfo.baseName()
-# Ouvrir le raster de la zone d'étude de votre choix
-rlayer = QgsRasterLayer(fileName, baseName)
-
-#Vérifier l'ouverture du raster
-if not rlayer.isValid():
-    print("Layer failed to load!")
-
-# Méthode plus simple pour charger et afficher le raster 
-rPIRlayer = iface.addRasterLayer("LC08_L1TP_201028_20171117_20171122_01_T1_B5.TIF", "PIR")
-rREDlayer = iface.addRasterLayer("LC08_L1TP_201028_20171117_20171122_01_T1_B4.TIF", "RED")
+# Méthode simple pour charger et afficher le raster 
+rPIRlayer = iface.addRasterLayer("LC08_L1TP_203026_20170827_20170914_01_T1_B5.TIF", "PIR")
+rREDlayer = iface.addRasterLayer("LC08_L1TP_203026_20170827_20170914_01_T1_B4.TIF", "RED")
 
 # Afficher les dimensions du raster
 rREDlayer.width(), rREDlayer.height()
@@ -103,14 +90,12 @@ calc.processCalculation()
 rNDVIlayer = iface.addRasterLayer(output, "NDVI")
 
 # Reprojeter le shapefile de la zone d'étude
-parameter = {'INPUT': 'LA_ROCHELLE_AREA_POLYGON_WGS84.shp', 'TARGET_CRS': 'EPSG:32630',
-                 'OUTPUT': 'LA_ROCHELLE_AREA_POLYGON_UTM30n.shp'}
+parameter = {'INPUT': 'BREST_AREA_POLYGON_WGS84.shp', 'TARGET_CRS': 'EPSG:32630',
+                 'OUTPUT': 'BREST_AREA_POLYGON_UTM30n.shp'}
 processing.run('native:reprojectlayer', parameter)
 
 # Charger et afficher le shapefile de la zone d'étude
-vZElayer32630 = iface.addVectorLayer("LA_ROCHELLE_AREA_POLYGON_UTM30n.shp", "ZE", "ogr")
-if not vZElayer32630:
-    print("Layer failed to load!")
+vZElayer32630 = iface.addVectorLayer("BREST_AREA_POLYGON_UTM30n.shp", "ZE", "ogr")
     
 # Découper le NDVI selon le masque
 parameter = {'INPUT': rNDVIlayer, 'MASK': vZElayer32630, 'OUTPUT': 'ndvi_QGIS_clip.tif'}
@@ -118,9 +103,6 @@ processing.run('gdal:cliprasterbymasklayer', parameter)
 
 # Ouvrir le NDVI découpé
 rNDVI_CLIPlayer = iface.addRasterLayer('ndvi_QGIS_clip.tif', "NDVI_CLIP")
-# Vérifier l'ouverture du raster
-if not rNDVI_CLIPlayer.isValid():
-    print("Layer failed to load!")
     
 # Reprojeter le NDVI en RGF93
 parameters = {"INPUT":'ndvi_QGIS_clip.tif',
@@ -132,8 +114,6 @@ processing.run("gdal:warpreproject",parameters)
 # Ouvrir le NDVI découpé et reprojeté
 rNDVI_CLIPlayer = iface.addRasterLayer("ndvi_QGIS_clip_2154.tif", "NDVI_CLIP_2154")
 codeEpsg = rNDVI_CLIPlayer.crs().authid()
-
-# Vérifier la projection du raster
-if codeEpsg != 'EPSG:2154':
-    print("Wrong EPSG!")
 ```
+
+
