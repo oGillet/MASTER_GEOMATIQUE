@@ -1,6 +1,10 @@
 # PyGIS
 
 ## Données matricielles
+
+| WARNING: Les images satellitaires sont celles de Brest et non de La Rochelle. Vous devez modifier les working directory et le nom des images! |
+| --- |
+
 ```python
 ###########################################################
 ####       Manipulation des données matricielles       ####
