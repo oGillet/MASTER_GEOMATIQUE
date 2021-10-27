@@ -78,23 +78,68 @@ while (chercheToujours):
 # Importer les librairies
 import random
 
-# Exemple de dictionnaire (cles/valeurs)
-exemple_dict = {}
-exemple_dict["nom"] = "Wayne"
-exemple_dict["prenom"] = "Bruce"
-exemple_dict
+# Variable globale
+jeu={"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9,"10":10,"valet":11,"dame":12,"roi":13,"as":14}     
 
+## Initialiser le jeu
 # Creer un jeu de carte 
-jeu={"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8,"9":9,"10":10,"valet":11,"dame":12,"roi":13,"as":14}
- 
-jeu_carte={}
-for cle in jeu:
-    jeu_carte[(cle,"pique")]=jeu[cle]
-    jeu_carte[(cle,"coeur")]=jeu[cle]
-    jeu_carte[(cle,"trefle")]=jeu[cle]
-    jeu_carte[(cle,"carreau")]=jeu[cle]
-jeu_carte_melange = list(jeu_carte.items())
+def creerJeu():
 
-# Melanger le carte 
-random.shuffle(jeu_carte_melange)
+    jeu_carte={}
+    for cle in jeu:
+        jeu_carte[(cle,"pique")]=jeu[cle]
+        jeu_carte[(cle,"coeur")]=jeu[cle]
+        jeu_carte[(cle,"trefle")]=jeu[cle]
+        jeu_carte[(cle,"carreau")]=jeu[cle]
+    jeu_carte_melange = list(jeu_carte.items())
+    
+    # Melanger le carte 
+    random.shuffle(jeu_carte_melange)
+    
+    return(jeu_carte_melange)
+   
+
+# Demarrer la partie
+carte_bataille = creerJeu()
+jeu_ordinateur = carte_bataille[1:5]
+jeu_joueur = carte_bataille[6:10]
+print("Le jeu est créé, vous pouvez démarrer la partie") 
+
+# Appel de la fonction creerJeu (fonction sans parametre)
+q1 = str(input("Souhaitez-vous mélanger à nouveau le jeu (o/n)"))
+if q1 == 'o':
+    carte_bataille = creerJeu()
+    jeu_ordinateur = carte_bataille[1:5]
+    jeu_joueur = carte_bataille[6:10]
+    print("Le jeu est à nouveau mélangé, la partie démarre") 
+    
+c = 1
+continueGame = True
+
+while continueGame:
+    carte_ordinateur = jeu_ordinateur[0]
+    carte_joueur = jeu_joueur[0]
+    print('(Joueur) \\\ ', carte_joueur[0], " VS ", carte_ordinateur[0], '  /// (Ordinateur)')
+    if carte_ordinateur[1] > carte_joueur[1]:
+        print("L'ordinateur gagne (",c," coups)")
+        jeu_ordinateur.append(carte_joueur)
+        del jeu_joueur[0]
+    elif carte_ordinateur[1] < carte_joueur[1]:
+        print("Le jouer gagne (",c," coups)")
+        jeu_joueur.append(carte_ordinateur)
+        del jeu_ordinateur[0]
+    else:
+        print("Bataille (",c," coups)")
+        jeu_joueur.append(carte_joueur)
+        del jeu_joueur[0]
+        jeu_ordinateur.append(carte_ordinateur)
+        del jeu_ordinateur[0]
+    if len(jeu_joueur) == 0 or len(jeu_ordinateur)==0:
+        continueGame = False
+    c = c + 1
+    
+if len(jeu_ordinateur)>0:
+    print("L'ordinateur a gagné en ",c," coups")
+else:
+    print("Le joueur a gagné en ",c," coups")
 ```
