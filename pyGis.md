@@ -3,7 +3,7 @@
 ## Données matricielles
 
 > **WARNING**:  
-> Les images satellitaires sont celles de Brest et non de La Rochelle. Vous devez modifier les working directory et le nom des images /!\
+> Les images satellitaires sont celles de Brest et non de La Rochelle. Vous devez modifier les working directory, le nom des images  et les valeurs NDVI max et min /!\
 
 ```python
 ###########################################################
@@ -161,7 +161,7 @@ w = rNDVIlayer.width()
 h = rNDVIlayer.height()
 
 # Lancer la calculatrice raster
-calc=QgsRasterCalculator('sqrt((rNDVIlayer@1-(-0.0837178))/(0.084035-(-0.0837178)))',output,'GTiff',e,w,h,entries)
+calc=QgsRasterCalculator('sqrt((rNDVIlayer@1-(-0.14027367532253))/(1-(-0.14027367532253)))',output,'GTiff',e,w,h,entries)
 calc.processCalculation()
 
 # Charger et ouvrir le résultat
