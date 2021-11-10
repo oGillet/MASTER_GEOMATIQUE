@@ -18,12 +18,30 @@ import qgis.utils
 from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
 
 # Fixer le répertoire courant
-os.chdir('/home/gilleol2/Bureau/LC08_L1TP_203026_20170827_20170914_01_T1')
+os.chdir('/home/gilleol2/Bureau/L8_ROCHELLE')
+
+## Reprojeter le shapefile de la zone d'étude
+parameter = {'INPUT': 'LA_ROCHELLE_AREA_POLYGON_WGS84.shp', 'TARGET_CRS': 'EPSG:32630',
+                 'OUTPUT': 'LA_ROCHELLE_AREA_POLYGON_UTM30n.shp'}
+processing.run('native:reprojectlayer', parameter)
+
+# Charger et afficher le shapefile de la zone d'étude
+vZElayer32630 = iface.addVectorLayer("LA_ROCHELLE_AREA_POLYGON_UTM30n.shp", "ZE", "ogr")
+    
+# Ouvrir le NDVI découpé
+rNDVI_CLIPlayer = iface.addRasterLayer('temp_QGIS_clip.tif', "TEMP_CLIP")
 
 # Méthode simple pour charger et afficher le raster 
-rPIRlayer = iface.addRasterLayer("LC08_L1TP_203026_20170827_20170914_01_T1_B5.TIF", "PIR")
-rREDlayer = iface.addRasterLayer("LC08_L1TP_203026_20170827_20170914_01_T1_B4.TIF", "RED")
-rTIRlayer = iface.addRasterLayer("LC08_L1TP_203026_20170827_20170914_01_T1_B10.TIF", "TIR")
+# Découper le PIR selon le masque
+parameter = {'INPUT': "LC08_L1TP_201028_20171117_20171122_01_T1_B5.TIF", 'MASK': vZElayer32630, 'OUTPUT': 'LC08_L1TP_201028_20171117_20171122_01_T1_B5_clip.tif'}
+processing.run('gdal:cliprasterbymasklayer', parameter)
+rPIRlayer = iface.addRasterLayer("LC08_L1TP_201028_20171117_20171122_01_T1_B5_clip.tif", "PIR")
+parameter = {'INPUT': "LC08_L1TP_201028_20171117_20171122_01_T1_B4.TIF", 'MASK': vZElayer32630, 'OUTPUT': 'LC08_L1TP_201028_20171117_20171122_01_T1_B4_clip.tif'}
+processing.run('gdal:cliprasterbymasklayer', parameter)
+rREDlayer = iface.addRasterLayer("LC08_L1TP_201028_20171117_20171122_01_T1_B4_clip.tif", "RED")
+parameter = {'INPUT': "LC08_L1TP_201028_20171117_20171122_01_T1_B10.TIF", 'MASK': vZElayer32630, 'OUTPUT': 'LC08_L1TP_201028_20171117_20171122_01_T1_B10_clip.tif'}
+processing.run('gdal:cliprasterbymasklayer', parameter)
+rTIRlayer = iface.addRasterLayer("LC08_L1TP_201028_20171117_20171122_01_T1_B10_clip.tif", "TIR")
 
 # Calculer le NDVI
 ###########################################################
@@ -160,13 +178,18 @@ e = rNDVIlayer.extent()
 w = rNDVIlayer.width()
 h = rNDVIlayer.height()
 
-# Lancer la calculatrice raster
-calc=QgsRasterCalculator('sqrt((rNDVIlayer@1-(-0.14027367532253))/(1-(-0.14027367532253)))',output,'GTiff',e,w,h,entries)
-calc.processCalculation()
+# Déclarer certaines variables nécessaires l'exécution de la calculatrice raster
+provider = rNDVIlayer.dataProvider()
+stats = provider.bandStatistics(1, QgsRasterBandStats.All, rNDVIlayer.extent(), 0)
+min = stats.minimumValue
+max = stats.maximumValue
+print('min:', min,' max:', max)
 
+# Lancer la calculatrice raster
+calc=QgsRasterCalculator('sqrt((rNDVIlayer@1-%s)/(%s-%s))'%(min, max, min),output,'GTiff',e,w,h,entries)
+calc.processCalculation()
 # Charger et ouvrir le résultat
 rPROPORTIONVEGlayer = iface.addRasterLayer(output, "PROPORTIONVEG")
-
 
 # Calculer le EMISSIVITY
 ###########################################################
@@ -232,30 +255,15 @@ calc.processCalculation()
 # Charger et ouvrir le résultat
 rTEMPERATURElayer = iface.addRasterLayer(output, "TEMPERATURE")
 
-## Reprojeter le shapefile de la zone d'étude
-parameter = {'INPUT': 'BREST_AREA_POLYGON_WGS84.shp', 'TARGET_CRS': 'EPSG:32630',
-                 'OUTPUT': 'BREST_AREA_POLYGON_UTM30n.shp'}
-processing.run('native:reprojectlayer', parameter)
-
-# Charger et afficher le shapefile de la zone d'étude
-vZElayer32630 = iface.addVectorLayer("BREST_AREA_POLYGON_UTM30n.shp", "ZE", "ogr")
-    
-# Découper le NDVI selon le masque
-parameter = {'INPUT': rTEMPERATURElayer, 'MASK': vZElayer32630, 'OUTPUT': 'temp_QGIS_clip.tif'}
-processing.run('gdal:cliprasterbymasklayer', parameter)
-
-# Ouvrir le NDVI découpé
-rNDVI_CLIPlayer = iface.addRasterLayer('temp_QGIS_clip.tif', "TEMP_CLIP")
-    
 # Reprojeter le NDVI en RGF93
-parameters = {"INPUT":'temp_QGIS_clip.tif',
+parameters = {"INPUT":'temperature_QGIS.tif',
                       "SOURCE_SRS":"EPSG:32630",
                       "TARGET_CRS":"EPSG:2154",
-                      "OUTPUT":"temp_QGIS_clip_2154.tif"}
+                      "OUTPUT":"temp_QGIS_2154.tif"}
 processing.run("gdal:warpreproject",parameters)
 
 # Ouvrir le NDVI découpé et reprojeté
-rNDVI_CLIPlayer = iface.addRasterLayer("temp_QGIS_clip_2154.tif", "temp_CLIP_2154")
+rNDVI_CLIPlayer = iface.addRasterLayer("temp_QGIS_2154.tif", "temp_QGIS_2154")
 codeEpsg = rNDVI_CLIPlayer.crs().authid()
 ```
 
