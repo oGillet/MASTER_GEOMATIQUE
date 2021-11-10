@@ -30,9 +30,6 @@ processing.run('native:reprojectlayer', parameter)
 
 # Charger et afficher le shapefile de la zone d'étude
 vZElayer32630 = iface.addVectorLayer("LA_ROCHELLE_AREA_POLYGON_UTM30n.shp", "ZE", "ogr")
-    
-# Ouvrir le NDVI découpé
-rNDVI_CLIPlayer = iface.addRasterLayer('temp_QGIS_clip.tif', "TEMP_CLIP")
 
 # Méthode simple pour charger et afficher le raster 
 # Découper le PIR selon le masque
