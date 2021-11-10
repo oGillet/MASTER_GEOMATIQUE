@@ -2,9 +2,6 @@
 
 ## Données matricielles
 
-> **WARNING**:  
-> Les images satellitaires sont celles de Brest et non de La Rochelle. Vous devez modifier les working directory, le nom des images  et les valeurs NDVI max et min /!\
-
 ```python
 ###########################################################
 ####       Manipulation des données matricielles       ####
