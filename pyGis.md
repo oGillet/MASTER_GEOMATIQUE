@@ -3,9 +3,12 @@
 ## Données matricielles
 
 ```python
+
+###########################################################
 ###########################################################
 ####       Manipulation des données matricielles       ####
-####            et vectorielle avec PyGIS              ####
+####                       PyGIS                       ####
+###########################################################
 ###########################################################
 
 # Charger les librairies
@@ -264,4 +267,109 @@ rNDVI_CLIPlayer = iface.addRasterLayer("temp_QGIS_2154.tif", "temp_QGIS_2154")
 codeEpsg = rNDVI_CLIPlayer.crs().authid()
 ```
 
+```python
 
+###########################################################
+###########################################################
+####       Manipulation des données vectorielles       ####
+####                       PyGIS                       ####
+###########################################################
+###########################################################
+
+# Charger les librairies
+import csv, os, sys, datetime, string
+import processing
+import qgis.utils
+from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
+
+# Fixer le répertoire courant
+os.chdir('/home/gilleol2/Bureau/L8_ROCHELLE')
+
+# Ouvrir le NDVI
+rNDVIlayer = iface.addRasterLayer("ndvi_QGIS.tif", "NDVI")
+# Vérifier l'ouverture du raster
+if not rNDVIlayer.isValid():
+    print("Layer failed to load!")
+    
+# Reprojeter le NDVI en RGF93
+parameters = {"INPUT":'ndvi_QGIS.tif',
+                      "SOURCE_SRS":"EPSG:32630",
+                      "TARGET_CRS":"EPSG:2154",
+                      "OUTPUT":"ndvi_QGIS_2154.tif"}
+processing.run("gdal:warpreproject",parameters)
+
+# Ouvrir le NDVI découpé et reprojeté
+rNDVI_CLIPlayer = iface.addRasterLayer("ndvi_QGIS_2154.tif", "NDVI_2154")
+codeEpsg = rNDVI_CLIPlayer.crs().authid()
+
+# Vérifier la projection du raster
+if codeEpsg != 'EPSG:2154':
+    print("Wrong EPSG!")
+
+## Données vectorielles
+# Afficher le nombre de pixels
+w = rNDVI_CLIPlayer.width()
+h = rNDVI_CLIPlayer.height()
+print('Le nombre de pixel, donc de polygones, est de ', str(w*h))
+
+# Obtenir des informations sur la résulation spatiale du raster
+pixelSizeX= rNDVI_CLIPlayer.rasterUnitsPerPixelX()
+pixelSizeY = rNDVI_CLIPlayer.rasterUnitsPerPixelY()
+
+# Obetnir l'extension spatiale du raster
+spatialExtent = rNDVI_CLIPlayer.extent()
+originX, originY = spatialExtent.xMinimum(), spatialExtent.yMaximum()
+
+# Obtenier les valeurs du NDVI 
+provider = rNDVI_CLIPlayer.dataProvider()
+block = provider.block(1, spatialExtent, w, h)
+
+# Créer un nouveau shapefile, un fichier de points
+fields = QgsFields()
+# Ajouter les coordonnées du point
+fields.append(QgsField("X", QVariant.String))
+fields.append(QgsField("Y", QVariant.String))
+# Ajouter un attribut avec la valeur du NDVI
+fields.append(QgsField("NDVI", QVariant.String))
+# Ajouter des attributs issue de la classification
+fields.append(QgsField("CLASSIF", QVariant.String))
+fields.append(QgsField("TYPE", QVariant.String))
+
+# Créer le shapefile
+writer = QgsVectorFileWriter("points_QGIS_ndvi_v.shp", "UTF-8", fields, QgsWkbTypes.Point, rNDVI_CLIPlayer.crs(), driverName="ESRI Shapefile")
+
+# Définir une colonne pour le transect vertical
+transect = w/2
+# Définir la coordonnée X du transect
+Xcoord = originX+pixelSizeX*transect
+    
+# Boucler pour parcourir le transect et écrire la données dans le shapefile
+# Pour chaque ligne du de la colonne
+for j in range(h):
+    Ycoord = originY-pixelSizeY*(j+0.5)
+    # Obtenir la valeur du pixel
+    ndviValue = block.value(transect,j)
+    # Classifier en fonction de la valer du pixel
+    if ndviValue < 0:
+        typeClassification, valueClassification = "eau", 1
+    elif ndviValue > 0.25:
+        typeClassification, valueClassification = "vegetation", 3
+    else :
+        typeClassification, valueClassification = "mineral", 2
+    # Créer un entités
+    fet = QgsFeature()
+    # Fixer les coordonées du point
+    fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(Xcoord,Ycoord)))
+    # Ajouter les attributs
+    fet.setAttributes([Xcoord,Ycoord,ndviValue,typeClassification,valueClassification])
+    # Ecrire l'entité dans le shapefile
+    writer.addFeature(fet)
+  
+# Fermer le shapefile
+del writer
+
+# Charger et afficher le shapefile
+vlayer = iface.addVectorLayer("points_QGIS_ndvi_v.shp", "POINTS", "ogr")
+if not vlayer:
+    print("Layer failed to load!")
+```
