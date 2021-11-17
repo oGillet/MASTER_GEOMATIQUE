@@ -12,13 +12,14 @@
 ###########################################################
 
 # Charger les librairies
-import gdal, ogr, osr
+#import gdal, ogr, osr
+from osgeo import gdal, ogr, osr
 import sys
 import numpy as np
 import math
 
 # Fixer le répertoire courant
-os.chdir('')
+os.chdir('/home/gilleol2/Bureau/L8_ROCHELLE')
 
 # Charger les rasters 
 rPIRlayer = gdal.Open("LC08_L1TP_201028_20171117_20171122_01_T1_B5.TIF")
@@ -75,12 +76,10 @@ data_tif.GetRasterBand(1).WriteArray(NDVI)
 # Fermer le raster
 del data_tif
 
-# Ouvrir le NDVI et la bande du thermique
-rNDVIlayer = gdal.Open("ndvi_GDAL.tif")
-
 #- Définir des variables pour découper le master
-gdal.Warp("ndvi_GDAL_clip.tif", rNDVIlayer, cutlineDSName='LA_ROCHELLE_AREA_POLYGON_UTM30n.shp',cropToCutline=True, dstNodata = 0)
-
+gdal.Warp("ndvi_GDAL_clip.tif", 
+"ndvi_GDAL.tif", cutlineDSName='LA_ROCHELLE_AREA_POLYGON_UTM30n.shp',
+cropToCutline=True, dstNodata = 0)
 
 # Définir le système de projection
 RGF93 = 'PROJCS["RGF93 / Lambert-93",GEOGCS["RGF93",DATUM["Reseau_Geodesique_Francais_1993",SPHEROID["GRS 1980",6378137,298.257222101,AUTHORITY["EPSG","7019"]],TOWGS84[0,0,0,0,0,0,0],AUTHORITY["EPSG","6171"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.01745329251994328,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4171"]],UNIT["metre",1,AUTHORITY["EPSG","9001"]],PROJECTION["Lambert_Conformal_Conic_2SP"],PARAMETER["standard_parallel_1",49],PARAMETER["standard_parallel_2",44],PARAMETER["latitude_of_origin",46.5],PARAMETER["central_meridian",3],PARAMETER["false_easting",700000],PARAMETER["false_northing",6600000],AUTHORITY["EPSG","2154"],AXIS["X",EAST],AXIS["Y",NORTH]]'
@@ -89,8 +88,8 @@ RGF93 = 'PROJCS["RGF93 / Lambert-93",GEOGCS["RGF93",DATUM["Reseau_Geodesique_Fra
 gdal.Warp('ndvi_GDAL_clip_2154.tif', 'ndvi_GDAL_clip.tif',dstSRS=RGF93)
 
 # Charger le NDVI découpé et reprojeté
-rNDVI_CLIPlayer = gdal.Open("ndvi_GDAL_clip_2154.TIF")
-# Convertir la bande RED en array
+rNDVI_CLIPlayer = gdal.Open("ndvi_GDAL_clip_2154.tif")
+# Convertir la bande NDVI en array
 aNDVI_CLIPlayer = rNDVI_CLIPlayer.ReadAsArray().astype(np.float32)
 
 # Recuperer le SCR avec la methode GetProjection
