@@ -370,3 +370,128 @@ vlayer = iface.addVectorLayer("points_QGIS_ndvi_v.shp", "POINTS", "ogr")
 if not vlayer:
     print("Layer failed to load!")
 ```
+
+
+```python
+###########################################################
+####       Manipulation des données vectorielle        ####
+####                       PyGIS                       ####
+###########################################################
+
+# Charger les librairies
+import csv, os, sys, datetime, string
+import processing
+import qgis.utils
+from qgis.analysis import QgsRasterCalculator, QgsRasterCalculatorEntry
+
+# Fixer le répertoire courant
+os.chdir('C:\\Users\\gilleol2\\Desktop\\L8_ROCHELLE')
+
+# Ouvrir le NDVI
+rTEMPlayer = iface.addRasterLayer("temp_QGIS_2154.tif", "temperature")
+# Vérifier l'ouverture du raster
+if not rTEMPlayer.isValid():
+    print("Layer failed to load!")
+
+codeEpsg = rTEMPlayer.crs().authid()
+
+# Vérifier la projection du raster
+if codeEpsg != 'EPSG:2154':
+    print("Wrong EPSG!")
+
+## Données vectorielles
+# Afficher le nombre de pixels
+w = rTEMPlayer.width()
+h = rTEMPlayer.height()
+print('Le nombre de pixel, donc de polygones, est de ', str(w*h))
+
+# Obtenir des informations sur la résulation spatiale du raster
+pixelSizeX= rTEMPlayer.rasterUnitsPerPixelX()
+pixelSizeY = rTEMPlayer.rasterUnitsPerPixelY()
+
+# Obetnir l'extension spatiale du raster
+spatialExtent = rTEMPlayer.extent()
+originX, originY = spatialExtent.xMinimum(), spatialExtent.yMaximum()
+
+# Obtenier les valeurs du NDVI 
+provider = rTEMPlayer.dataProvider()
+block = provider.block(1, spatialExtent, w, h)
+
+# Créer un nouveau shapefile, un fichier de points
+fields = QgsFields()
+# Ajouter les coordonnées du point
+fields.append(QgsField("X", QVariant.String))
+fields.append(QgsField("Y", QVariant.String))
+# Ajouter un attribut avec la valeur du NDVI
+fields.append(QgsField("TEMP", QVariant.String))
+
+# Créer le shapefile
+writer = QgsVectorFileWriter("points_QGIS_TEMP_v.shp", "UTF-8", fields, QgsWkbTypes.Point, rTEMPlayer.crs(), driverName="ESRI Shapefile")
+
+# Définir une colonne pour le transect vertical
+transect = w/2
+# Définir la coordonnée X du transect
+Xcoord = originX+pixelSizeX*transect
+    
+# Boucler pour parcourir le transect et écrire la données dans le shapefile
+# Pour chaque ligne du de la colonne
+for j in range(h):
+    Ycoord = originY-pixelSizeY*(j+0.5)
+    # Obtenir la valeur du pixel
+    tempValue = block.value(transect,j)
+    # Créer un entités
+    fet = QgsFeature()
+    # Fixer les coordonées du point
+    fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(Xcoord,Ycoord)))
+    # Ajouter les attributs
+    fet.setAttributes([Xcoord,Ycoord,tempValue])
+    # Ecrire l'entité dans le shapefile
+    writer.addFeature(fet)
+  
+# Fermer le shapefile
+del writer
+
+# Charger et afficher le shapefile
+vlayer = iface.addVectorLayer("points_QGIS_TEMP_v.shp", "POINTS", "ogr")
+if not vlayer:
+    print("Layer failed to load!")
+
+
+#/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
+#/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
+#/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\/!\
+# Créer un nouveau shapefile
+writer = QgsVectorFileWriter("points_QGIS_TEMP_h.shp", "UTF-8", 
+fields, QgsWkbTypes.Point, rTEMPlayer.crs(), driverName="ESRI Shapefile")
+
+# Définir une colonne pour le transect vertical
+#transect = w/2
+transect = h/2
+# Définir la coordonnée X du transect
+#Xcoord = originX+pixelSizeX*transect
+Ycoord = originY-pixelSizeY*transect
+    
+# Boucler pour parcourir le transect et écrire la données dans le shapefile
+# Pour chaque ligne du de la colonne
+for j in range(w):
+    #Ycoord = originY-pixelSizeY*(j+0.5)
+    Xcoord = originX+pixelSizeX*(j-0.5)
+    # Obtenir la valeur du pixel
+    tempValue = block.value(transect,j)
+    # Créer un entités
+    fet = QgsFeature()
+    # Fixer les coordonées du point
+    fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(Xcoord,Ycoord)))
+    # Ajouter les attributs
+    fet.setAttributes([Xcoord,Ycoord,tempValue])
+    # Ecrire l'entité dans le shapefile
+    writer.addFeature(fet)
+  
+# Fermer le shapefile
+del writer
+
+# Charger et afficher le shapefile
+vlayer = iface.addVectorLayer("points_QGIS_TEMP_h.shp", "POINTS", "ogr")
+if not vlayer:
+    print("Layer failed to load!")
+```
