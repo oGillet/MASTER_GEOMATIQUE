@@ -4,9 +4,12 @@
 
 ## Données matricielles et vectorielles
 ```python
-#################################################
-####  Manipulation des données matricielles  ####
-#################################################
+###########################################################
+###########################################################
+####       Manipulation des données matricielles       ####
+####                       PyGIS                       ####
+###########################################################
+###########################################################
 
 # Charger les librairies
 import gdal, ogr, osr
@@ -106,6 +109,14 @@ print('Le nombre de pixel, donc de polygones, est de ', str(w*h))
 # Elle retourne un tuple (!= de la liste)
 # (X du point en haut à gauche, largeur du pixel, rotation de l'image, Y du point en haut à gauche, hauteur du pixel, rotation de l'image)
 originX, pixelWidth, xskew, originY, yskew, pixelHeight  = rNDVI_CLIPlayer.GetGeoTransform()
+```
+```python
+###########################################################
+###########################################################
+####       Manipulation des données vectorielles       ####
+####                       PyGIS                       ####
+###########################################################
+###########################################################
 
 #Initialiser un driver pour gerer le futur fichier
 driver = ogr.GetDriverByName("ESRI Shapefile")
