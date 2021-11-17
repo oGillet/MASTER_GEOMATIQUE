@@ -112,3 +112,4 @@ del direction,gridSize,maxN,step,position
 levels = [-0.5, 0.5, 1.5]
 contourf(grid_move, levels, colors=('white','black'))
 show()
+```
