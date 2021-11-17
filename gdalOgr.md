@@ -117,6 +117,13 @@ originX, pixelWidth, xskew, originY, yskew, pixelHeight  = rNDVI_CLIPlayer.GetGe
 ###########################################################
 ###########################################################
 
+# Charger les librairies
+#import gdal, ogr, osr
+from osgeo import gdal, ogr, osr
+import sys
+import numpy as np
+import math
+
 #Initialiser un driver pour gerer le futur fichier
 driver = ogr.GetDriverByName("ESRI Shapefile")
 
