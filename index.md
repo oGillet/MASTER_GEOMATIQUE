@@ -13,4 +13,3 @@ Les systèmes d’informations géographiques (QGIS, ArcGIS, MapINFO) offrent de
 - Manipulation des données matricielles et vectorielles avec [PyGIS](./pyGis.html)
 - Manipulation des données matricielles et vectorielles avec [GDAL/OGR](./gdalOgr.html).
 - Exercice n°4  - Fourmi de Langton [Python - GDAL/OGR](./ant_langton.html)
-- Exercice n°5  - Créer une trace GPS [Python - GDAL/OGR](./exercice_4.html)
