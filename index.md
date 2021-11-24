@@ -12,5 +12,5 @@ Les systèmes d’informations géographiques (QGIS, ArcGIS, MapINFO) offrent de
 - Ma première chaîne de traitements [(Click button, Model Builder)](./model_builder.html).
 - Manipulation des données matricielles et vectorielles avec [PyGIS](./pyGis.html)
 - Manipulation des données matricielles et vectorielles avec [GDAL/OGR](./gdalOgr.html).
-- Exercice n°4  - Fourmi de Langton [Python](./ant_langton.html)
-- Exercice n°5  - Créer une trace GPS [Python](./exercice_4.html)
+- Exercice n°4  - Fourmi de Langton [Python - GDAL/OGR](./ant_langton.html)
+- Exercice n°5  - Créer une trace GPS [Python - GDAL/OGR](./exercice_4.html)
