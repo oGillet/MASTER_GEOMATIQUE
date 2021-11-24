@@ -1,3 +1,3 @@
 # **Créer une trace "GPS"**
 
-![DEM](images/stromboli.gif)
+![TRACES](images/trace_GPS.gif)
