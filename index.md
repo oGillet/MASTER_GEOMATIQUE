@@ -8,8 +8,9 @@ Les systèmes d’informations géographiques (QGIS, ArcGIS, MapINFO) offrent de
 - Découverte des bases de l'algorithmique et du langage Python.
 - Exercice n°1  - Assimiler les principaux concepts de python [(Cliquez ici)](./exercice_1.html).
 - Exercice n°2  - Réaliser des mini jeux [(Jeu du pendu, jeu du + ou -, jeu de la Bataille)](./exercice_2.html).
-- Calculer les températures de surface [(Cliquez ici)](./exercice_3.html).
-- Première chaîne de traitements [(Click button, Model Builder)](./model_builder.html).
+- Exercice n°3  - Calculer les températures de surface [(Cliquez ici)](./exercice_3.html).
+- Ma première chaîne de traitements [(Click button, Model Builder)](./model_builder.html).
 - Manipulation des données matricielles et vectorielles avec [PyGIS](./pyGis.html)
 - Manipulation des données matricielles et vectorielles avec [GDAL/OGR](./gdalOgr.html).
-- Fourmi de Langton [Python](./ant_langton.html)
+- Exercice n°4  - Fourmi de Langton [Python](./ant_langton.html)
+- Exercice n°5  - Créer une trace GPS [Python](./exercice_4.html)
