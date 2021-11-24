@@ -1,1 +1,3 @@
-# Créer une trace "GPS"
+# **Créer une trace "GPS"**
+
+![DEM](images/stromboli.gf)
