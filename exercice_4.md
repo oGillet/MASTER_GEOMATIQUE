@@ -2,8 +2,6 @@
 
 Vous devez réaliser le suivi **fictif** GPS de la divagation d'une araignée dans la salle de cours pendant 1 heure.
 
-![spider](images/EXO_MASTER.png)
-
 Les outputs attendus sont:
 - Un shapefile avec une ligne représentant le déplacement de l'animal.
 - Un shapefile de points avec plusieurs attributs (ID, datetime, X, Y,speed) comme un **GPX**
@@ -18,4 +16,4 @@ Les outputs attendus sont:
 
 **Niveau 3**. Vous pouvez ajouter des obstables tels que des arbres si c'est un animal terrestre par exemple. Cela nécessite de créer des objets spatialisés (points, polygones ou lignes) et de réaliser des **géotraitements** comme des zones tampons ou des intersections.  
 
-![TRACES](images/trace_GPS.gif)
+![spider](images/EXO_MASTER.png)
