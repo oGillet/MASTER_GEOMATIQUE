@@ -1,10 +1,8 @@
 # **Créer une trace "GPS"**
 
-Vous devez réaliser le suivi **fictif** GPS de la divagation d'une araignée quelconque dans une zone d'étude donnée pendant 1 heure (balise argos par exemple).
+Vous devez réaliser le suivi **fictif** GPS de la divagation d'une araignée dans la salle de cours pendant 1 heure.
 
-<center>
 ![spider](images/EXO_MASTER.png)
-</center>
 
 Les outputs attendus sont:
 - Un shapefile avec une ligne représentant le déplacement de l'animal.
