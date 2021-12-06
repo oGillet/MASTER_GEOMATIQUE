@@ -3,7 +3,7 @@
 Vous devez réaliser le suivi **fictif** GPS de la divagation d'une araignée quelconque dans une zone d'étude donnée pendant 1 heure (balise argos par exemple).
 
 <center>
-![TRACES](images/EXO_MASTER.png)
+![spider](images/EXO_MASTER.png)
 </center>
 
 Les outputs attendus sont:
