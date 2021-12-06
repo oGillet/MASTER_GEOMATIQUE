@@ -2,9 +2,9 @@
 
 Vous devez réaliser le suivi **fictif** GPS de la divagation d'une araignée dans la salle de cours pendant 1 heure.
 
-Vitesse d'une araignée : 2 km/h
-Vitesse en m/s = 2/3.6
-Distance effectuée par intervalle de temps = 0.5 m
+- Vitesse d'une araignée : 2 km/h  
+- Vitesse en m/s = 2/3.6  
+- Distance effectuée par intervalle de temps = 0.5 m  
 
 Les outputs attendus sont:
 - Un shapefile avec une ligne représentant le déplacement de l'animal.
