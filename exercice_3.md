@@ -44,9 +44,3 @@ EMISSIVITY = 0.004 * rPROPORTIONVEG + 0.986
 ```
 TEMPERATURE = (rBRIGHTNESS / (1 + (0.00115 * rBRIGHTNESS / 1.4388) * ln(rEMISSIVITY)))
 ```
-> NDVI = (Band 5 – Band 4) / (Band 5 + Band 4)  
-> TOA (L) = ML * Qcal + AL  
-> BT = (K2 / (ln (K1 / L) + 1)) − 273.15  
-> Pv = Square ((NDVI – NDVImin) / (NDVImax – NDVImin))  
-> ε = 0.004 * Pv + 0.986  
-> LST = (BT / (1 + (0.00115 * BT / 1.4388) * Ln(ε)))  
