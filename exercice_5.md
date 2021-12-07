@@ -1,7 +1,6 @@
 # Chaîne de traitements de GDAL/OGR
 
-***Objectifs***
-Vous devez réaliser l'exercice du **marcheur ivre**. 
+***Objectifs : *** Vous devez réaliser l'exercice du **marcheur ivre**. 
 
 ***Données (Inputs)***
 - Néo-canux issus d'un prétraitement des images satellitaires Landsat 8 (raster, EPSG::2154)
