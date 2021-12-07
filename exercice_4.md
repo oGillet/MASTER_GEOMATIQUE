@@ -18,6 +18,6 @@ Les outputs attendus sont:
 
 **Niveau 2**. Vous devez ajouter des temps de pause et de la fatigue (diminution de la vitesse de déplacement). Ainsi vous pouvez calculer des statistiques telles que l'allure, la distance totale ou la durée totale des pauses.  
 
-**Niveau 3**. Vous pouvez ajouter des obstables tels que des arbres si c'est un animal terrestre par exemple. Cela nécessite de créer des objets spatialisés (points, polygones ou lignes) et de réaliser des **géotraitements** comme des zones tampons ou des intersections.  
+**Niveau 3**. Vous pouvez ajouter des obstables. Cela nécessite de créer des objets spatialisés (points, polygones ou lignes) et de réaliser des **géotraitements** comme des zones tampons ou des intersections.  
 
 ![spider](images/EXO_MASTER.png)
