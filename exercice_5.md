@@ -29,4 +29,4 @@
 
  Votre rendu doit faire deux pages maximum (diagramme des traitements + description des sorties). Vous devez également joindre le script python avec votre rapport.Le tout est à déposer au plus tard le  17 décembre 2021.
 
-![data](images/ALL_DATA.png)
+![data](images/all_data.png)
