@@ -23,4 +23,4 @@ while (chercheToujours):
         c += 1
     else:
         print ('Bingo, vous avez trouvé en '+str(c + 1)+' coup(s)')
-``
+```
