@@ -15,3 +15,7 @@ Les systèmes d’informations géographiques (QGIS, ArcGIS, MapINFO) offrent de
 - Exercice n°4  - Fourmi de Langton [Python - GDAL/OGR](./ant_langton.html)
 - Exercice n°5  - Trace GPS [Python - GDAL/OGR](./exercice_4.html)
 - Exercice n°6  - Examen (CC) [Python - GDAL/OGR](./exercice_5.html)
+
+
+## **Télécharger les données**
+https://drive.google.com/drive/folders/1_mTo-yGyEi0SGuvmm5fNkEOgESDqCGIl?usp=sharing
