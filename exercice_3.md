@@ -24,7 +24,7 @@ TOA = 0.0003342 * rTIR + 0.1
 3. ETAPE n°3
 
 ```
-BRIGHTNESS = 1321.0789 / ln((774.8853 / rTOA) + 1)) - 273.15
+BRIGHTNESS = (1321.0789 / ln((774.8853 / rTOA) + 1)) - 273.15
 ```
 
 4. ETAPE n°4
