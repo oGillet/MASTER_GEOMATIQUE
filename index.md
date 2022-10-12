@@ -19,3 +19,5 @@ Les systèmes d’informations géographiques (QGIS, ArcGIS, MapINFO) offrent de
 
 ## **Télécharger les données**
 https://drive.google.com/drive/folders/1_mTo-yGyEi0SGuvmm5fNkEOgESDqCGIl?usp=sharing
+
+https://drive.google.com/drive/folders/1zsM3opgMS7DShQxUywOTGQZmQo5q_Gv1?usp=sharing
