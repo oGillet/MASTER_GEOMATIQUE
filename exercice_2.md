@@ -53,18 +53,15 @@ for i in range(nOfMouv):
         y.append(y[-1])
     elif direction=='N':
         print('GOOOO ===> Nord')
-        tmp = y[-1] + 5
-        y.append(tmp) 
+        y.append(y[-1] + 5) 
         x.append(x[-1])
     elif direction=='E':
         print('GOOOO ===> Est')
-        tmp = x[-1] + 5
-        x.append(tmp) 
+        x.append(x[-1] + 5) 
         y.append(y[-1])
     else :
         print('GOOOO ===> Sud')
-        tmp = y[-1] - 5
-        y.append(tmp) 
+        y.append(y[-1] - 5) 
         x.append(x[-1])
     
 plt.plot(x, y)
