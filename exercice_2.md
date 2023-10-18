@@ -24,6 +24,53 @@ while (chercheToujours):
     else:
         print ('Bingo, vous avez trouvé en '+str(c + 1)+' coup(s)')
 ```
+``` python
+###########################################################
+###########################################################
+####                Marcheur Ivre                      ####
+####                                                   ####
+###########################################################
+###########################################################
+# Exercice marcheur ivre 
+
+import random
+import matplotlib.pyplot as plt
+
+# Position du marcheur
+x = [5000]
+y = [5000]
+
+# Nombre mouvements
+nOfMouv = 100
+
+# Debuter la marche 
+for i in range(nOfMouv):
+    print('Mouvement ', i)
+    direction = random.choice(['N','O','S','E'])
+    if direction=='O':
+        print('GOOOO ===> Ouest') 
+        x.append(x[-1] - 5) 
+        y.append(y[-1])
+    elif direction=='N':
+        print('GOOOO ===> Nord')
+        tmp = y[-1] + 5
+        y.append(tmp) 
+        x.append(x[-1])
+    elif direction=='E':
+        print('GOOOO ===> Est')
+        tmp = x[-1] + 5
+        x.append(tmp) 
+        y.append(y[-1])
+    else :
+        print('GOOOO ===> Sud')
+        tmp = y[-1] - 5
+        y.append(tmp) 
+        x.append(x[-1])
+    
+plt.plot(x, y)
+plt.show()   
+
+```
 
 ``` python
 # Import packages
