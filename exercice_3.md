@@ -53,9 +53,17 @@ PROPORTIONVEG = sqrt((rNDVI-(-0.0837178))/(0.084035-(-0.0837178)))
 EMISSIVITY = 0.004 * rPROPORTIONVEG + 0.986
 ```
 
+6. ETAPE n°6
+
+```
+TEMPERATURE = (rBRIGHTNESS / (1 + (0.00115 * rBRIGHTNESS / 1.4388) * ln(rEMISSIVITY)))
+```
 
 
-``` Python
+
+
+
+``` python
 # On obtient de le nombre de colonnes et de lignes
 xPixel, yPixel = np.shape(aRVIlayer)[1], np.shape(aRVIlayer)[0]
 
@@ -82,9 +90,4 @@ data_tif.GetRasterBand(1).WriteArray(aRVIlayer)
 
 # Fermer le raster
 del data_tif
-
-6. ETAPE n°6
-
-```
-TEMPERATURE = (rBRIGHTNESS / (1 + (0.00115 * rBRIGHTNESS / 1.4388) * ln(rEMISSIVITY)))
 ```
