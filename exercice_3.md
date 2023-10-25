@@ -64,6 +64,45 @@ TEMPERATURE = (rBRIGHTNESS / (1 + (0.00115 * rBRIGHTNESS / 1.4388) * ln(rEMISSIV
 
 
 ``` python
+###########################################################
+###########################################################
+####                     PROJET                        ####
+####                                                   ####
+###########################################################
+###########################################################
+
+###############################################################################
+# ==============================================================================
+# Import des librairies et des fonctions externes
+# ==============================================================================
+###############################################################################
+
+import numpy as np
+import matplotlib.pyplot as plt
+from osgeo import gdal, ogr
+import os
+
+###############################################################################
+# ==============================================================================
+# Script principal
+# ==============================================================================
+###############################################################################
+
+# Fixer un repertoire de travail
+os.chdir("C:\\Users\\gilleol2\\Desktop\\MASTER_2\\TEMPERATURE\\LA_ROCHELLE_RASTER_L8_WGS84")
+
+# Charger les rasters 
+rPIRlayer = gdal.Open("LC08_L1TP_201028_20171117_20171122_01_T1_B5.tif")
+rREDlayer = gdal.Open("LC08_L1TP_201028_20171117_20171122_01_T1_B4.tif")
+
+# Convertir la bande PIR en array
+aPIRlayer = rPIRlayer.ReadAsArray().astype(np.float32)
+# Convertir la bande RED en array
+aREDlayer = rREDlayer.ReadAsArray().astype(np.float32)
+
+#Calcul du RVI
+aRVIlayer = aPIRlayer/aREDlayer
+
 # On obtient de le nombre de colonnes et de lignes
 xPixel, yPixel = np.shape(aRVIlayer)[1], np.shape(aRVIlayer)[0]
 
