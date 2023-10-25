@@ -10,6 +10,7 @@
 - 
 ***Télécharger les données ***
 https://1drv.ms/u/s!ApLF8AhXkXryhdASkc1z7ujhXMO6Rw?e=yULzHJ
+Fichier de métadonnées <a href="images/LC08_L1TP_201028_20171117_20200902_02_T1_MTL.xml" download>Cliquez ici pour le télécharger</a>
 
 ***Instructions pour calculer des températures de surface***
 1. ETAPE n°1
