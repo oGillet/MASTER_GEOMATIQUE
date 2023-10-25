@@ -22,12 +22,22 @@ NDVI = (rPIR- rRed) / (rPIR + rRed)
 
 ```
 TOA = 0.0003342 * rTIR + 0.1
+
+TOA = ML * Qcal + AL
+ML = Band-specific multiplicative rescaling factor from the metadata (RADIANCE_MULT_BAND_x, where x is the band number).
+Qcal = corresponds to band 10.
+AL = Band-specific additive rescaling factor from the metadata (RADIANCE_ADD_BAND_x, where x is the band number).
 ```
 
 3. ETAPE n°3
 
 ```
 BRIGHTNESS = (1321.0789 / ln((774.8853 / rTOA) + 1)) - 273.15
+
+BRIGHTNESS = (K1 / ln((K2 / L) + 1)) - 273.15
+K1 = Band-specific thermal conversion constant from the metadata (K1_CONSTANT_BAND_x, where x is the thermal band number).
+K2 = Band-specific thermal conversion constant from the metadata (K2_CONSTANT_BAND_x, where x is the thermal band number).
+L = TOA
 ```
 
 4. ETAPE n°4
