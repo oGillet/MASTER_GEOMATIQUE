@@ -53,6 +53,36 @@ PROPORTIONVEG = sqrt((rNDVI-(-0.0837178))/(0.084035-(-0.0837178)))
 EMISSIVITY = 0.004 * rPROPORTIONVEG + 0.986
 ```
 
+
+
+``` Python
+# On obtient de le nombre de colonnes et de lignes
+xPixel, yPixel = np.shape(aRVIlayer)[1], np.shape(aRVIlayer)[0]
+
+# Enregistrement de l'image
+# Fixer le type de fichier
+driver = gdal.GetDriverByName('GTiff')
+
+# Créer le fichier
+data_tif = driver.Create("rvi.tif", xPixel, yPixel, 1, gdal.GDT_Float32)
+
+# Vérifier l'écriture de l'image
+if data_tif is None:
+    print("Error : impossible to create the file !\n")
+    sys.exit(1)
+
+# Récuperer les métadonnées d'une des images
+data_tif.SetGeoTransform(rPIRlayer.GetGeoTransform())
+
+# Fixer le système de coordonnées de référence
+data_tif.SetProjection(rPIRlayer.GetProjection())
+
+# Ecrire les données
+data_tif.GetRasterBand(1).WriteArray(aRVIlayer)
+
+# Fermer le raster
+del data_tif
+
 6. ETAPE n°6
 
 ```
