@@ -98,6 +98,9 @@ os.chdir("C:\\Users\\gilleol2\\Desktop\\MASTER_2\\TEMPERATURE\\LA_ROCHELLE_RASTE
 rPIRlayer = gdal.Open("LC08_L1TP_201028_20171117_20171122_01_T1_B5.tif")
 rREDlayer = gdal.Open("LC08_L1TP_201028_20171117_20171122_01_T1_B4.tif")
 
+#- Définir des variables pour découper le master
+gdal.Warp("B4_clip.tif", rREDlayer, cutlineDSName='LA_ROCHELLE_AREA_POLYGON_UTM30n.shp',cropToCutline=True, dstNodata = 0)
+
 # Convertir la bande PIR en array
 aPIRlayer = rPIRlayer.ReadAsArray().astype(np.float32)
 # Convertir la bande RED en array
