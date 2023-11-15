@@ -136,3 +136,103 @@ data_tif.GetRasterBand(1).WriteArray(aRVIlayer)
 # Fermer le raster
 del data_tif
 ```
+
+
+# Code pour calculer des températures de surface
+
+``` python
+###########################################################
+###########################################################
+####                     PROJET                        ####
+####                                                   ####
+###########################################################
+###########################################################
+
+###############################################################################
+# ==============================================================================
+# Import des librairies et des fonctions externes
+# ==============================================================================
+###############################################################################
+
+import numpy as np
+import matplotlib.pyplot as plt
+from osgeo import gdal, ogr
+import os
+
+###############################################################################
+# ==============================================================================
+# Script principal
+# ==============================================================================
+###############################################################################
+
+# Fixer un repertoire de travail
+os.chdir("C:\\Users\\gilleol2\\Desktop\\MASTER_2\\TEMPERATURE\\script_python")
+
+# Decouper les images 
+gdal.Warp("B5_clip.tif", "LC08_L1TP_201028_20171117_20171122_01_T1_B5.tif", cutlineDSName='LA_ROCHELLE_AREA_POLYGON_WGS84.shp',cropToCutline=True, dstNodata = 0)
+gdal.Warp("B4_clip.tif", "LC08_L1TP_201028_20171117_20171122_01_T1_B4.tif", cutlineDSName='LA_ROCHELLE_AREA_POLYGON_WGS84.shp',cropToCutline=True, dstNodata = 0)
+gdal.Warp("B10_clip.tif", "LC08_L1TP_201028_20171117_20171122_01_T1_B10.tif", cutlineDSName='LA_ROCHELLE_AREA_POLYGON_WGS84.shp',cropToCutline=True, dstNodata = 0)
+
+# Charger les rasters 
+rPIRlayer = gdal.Open("B5_clip.tif")
+rREDlayer = gdal.Open("B4_clip.tif")
+rTIRlayer = gdal.Open("B10_clip.tif")
+
+# Convertir la bande PIR en array
+aPIRlayer = rPIRlayer.ReadAsArray().astype(np.float32)
+print("PIR", np.count_nonzero(np.isnan(aPIRlayer)))
+# Convertir la bande RED en array
+aREDlayer = rREDlayer.ReadAsArray().astype(np.float32)
+print("RED", np.count_nonzero(np.isnan(aREDlayer)))
+# Convertir la bande TIR en array
+rTIRlayer = rTIRlayer.ReadAsArray().astype(np.float32)
+print("TIR", np.count_nonzero(np.isnan(rTIRlayer)))
+
+# NDVI
+NDVI = (aPIRlayer- aREDlayer) / (aPIRlayer + aREDlayer)
+print("NDVI",np.count_nonzero(np.isnan(NDVI)))
+# TOA
+TOA = 0.0003342 * rTIRlayer + 0.1
+print("TOA",np.count_nonzero(np.isnan(TOA)))
+# BRIGHTNESS
+BRIGHTNESS = (1321.0789 / np.log((774.8853 / TOA) + 1)) - 273.15
+print("BRIGHTNESS",np.count_nonzero(np.isnan(BRIGHTNESS)))
+#PROPORTIONVEG
+PROPORTIONVEG = np.sqrt((NDVI-(-0.0837178))/(0.084035-(-0.0837178)))
+print("PROPORTIONVEG",np.count_nonzero(np.isnan(PROPORTIONVEG)))
+#EMISSIVITY
+EMISSIVITY = 0.004 * PROPORTIONVEG + 0.986
+print("EMISSIVITY",np.count_nonzero(np.isnan(EMISSIVITY)))
+#TEMPERATURE
+TEMPERATURE = (BRIGHTNESS / (1 + (0.00115 * BRIGHTNESS / 1.4388) * np.log(EMISSIVITY)))
+print("TEMPERATURE",np.count_nonzero(np.isnan(TEMPERATURE)))
+
+# On obtient de le nombre de colonnes et de lignes
+xPixel, yPixel = np.shape(aREDlayer)[1], np.shape(aREDlayer)[0]
+
+# Enregistrement de l'image
+# Fixer le type de fichier
+driver = gdal.GetDriverByName('GTiff')
+
+# Créer le fichier
+data_tif = driver.Create("temperature.tif", xPixel, yPixel, 1, gdal.GDT_Float32)
+
+# Vérifier l'écriture de l'image
+if data_tif is None:
+    print("Error : impossible to create the file !\n")
+    sys.exit(1)
+
+# Récuperer les métadonnées d'une des images
+data_tif.SetGeoTransform(rPIRlayer.GetGeoTransform())
+
+# Fixer le système de coordonnées de référence
+data_tif.SetProjection(rPIRlayer.GetProjection())
+
+# Ecrire les données
+data_tif.GetRasterBand(1).WriteArray(TEMPERATURE)
+
+# Fermer le raster
+del data_tif
+
+iface.addRasterLayer("temperature.tif", "temperature")
+```
