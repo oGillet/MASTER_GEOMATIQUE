@@ -156,7 +156,7 @@ del data_tif
 
 import numpy as np
 import matplotlib.pyplot as plt
-from osgeo import gdal, ogr
+from osgeo import gdal, ogr, osr
 import os
 
 ###############################################################################
@@ -234,5 +234,80 @@ data_tif.GetRasterBand(1).WriteArray(TEMPERATURE)
 # Fermer le raster
 del data_tif
 
+# Ajouter le raster au QGIS
 iface.addRasterLayer("temperature.tif", "temperature")
+
+# Dimension de ma matrice
+np.shape(TEMPERATURE)
+
+# Afficher la température d'un pixel
+TEMPERATURE[250,650]
+
+cells = []
+temp = []
+# Afficher la temperature pour la 650eme colonne
+for i in range(np.shape(TEMPERATURE)[0]):
+    cells.append(i)
+    t = TEMPERATURE[i,650]
+    temp.append(t)
+plt.plot(cells, temp, linestyle='-', marker='o')
+plt.show()
+
+# Creer un point en shp
+rPIRlayer.GetGeoTransform()
+
+#Initialiser un driver pour gerer le futur fichier
+driver = ogr.GetDriverByName("ESRI Shapefile")
+
+#Definir un nom pour le nouveau shapefile
+output = "temperature.shp"
+
+#Supprimer shapefile si il existe deja
+if os.path.exists(output):
+    driver.DeleteDataSource(output)
+
+#Creer les sources de donnee avec la methode CreateDataSource
+ds = driver.CreateDataSource(output)
+
+#Importer le src depuis la librairie osr
+spatialref = osr.SpatialReference()  # Fixe le scr
+spatialref.ImportFromEPSG(32630)
+
+#Creer la couche ou le layer avec la methode CreateLayer
+layer = ds.CreateLayer('Point', spatialref, geom_type=ogr.wkbPoint)
+
+#Ajouter un champ dans la table attributaire
+#Definir l'attribut (FieldDefn)
+fielddef = ogr.FieldDefn("ID", ogr.OFTInteger)
+#Ajouter l'attribut a la table (CreateField)
+layer.CreateField(fielddef)
+
+fielddef = ogr.FieldDefn("TEMP", ogr.OFTInteger)
+layer.CreateField(fielddef)
+
+# Récuperer les métadonnées
+originX = rPIRlayer.GetGeoTransform()[0]
+pixelWidth = rPIRlayer.GetGeoTransform()[1]  
+originY = rPIRlayer.GetGeoTransform()[3]
+pixelHeight = rPIRlayer.GetGeoTransform()[5] 
+
+Xcoord = originX+pixelWidth*650
+Ycoord = originY+pixelHeight*250
+
+# Créer l'entité
+point = ogr.Geometry(ogr.wkbPoint)
+# Fixer le point dans l'espace
+point.AddPoint(Xcoord, Ycoord)
+# Ajouter les attributs et contruire l'entité 
+featureDefn = layer.GetLayerDefn()
+feature = ogr.Feature(featureDefn)
+feature.SetGeometry(point)
+feature.SetField('ID', 1)
+feature.SetField('TEMP',1)
+layer.CreateFeature(feature)
+# Supprimer les fichier temporaires
+del layer, ds
+
+iface.addVectorLayer("temperature.shp", "temperature", "ogr")
+
 ```
