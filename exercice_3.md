@@ -311,3 +311,90 @@ del layer, ds
 iface.addVectorLayer("temperature.shp", "temperature", "ogr")
 
 ```
+# Code pour creer une ligne en shp
+
+``` python
+###########################################################
+###########################################################
+####                  Créer les outputs                ####
+###########################################################
+###########################################################
+
+# Definir le nom pour le shapefile
+output_line = "line_GPS_animal.shp"
+
+#Verifier si ils existent [Si oui, supprimer les fichiers)
+if os.path.exists(output_line):
+    driver.DeleteDataSource(output_line)
+    
+# Creer le donnee avec la methode CreateDataSource
+ds_line = driver.CreateDataSource(output_line)
+
+# Verifier la creation des donnees
+if ds_line is None :
+    print ('Could not create file ', ds_line)
+    sys.exit (1)
+
+# Importer le src depuis la librairie osr
+spatialref = osr.SpatialReference()  # Fixe le scr
+spatialref.ImportFromEPSG(2154)  # RGF93 aka ESPG:2154
+
+# Creer la couche ou le layer avec la methode CreateLayer
+layer_line = ds_line.CreateLayer('line_GPS_animal', spatialref, geom_type=ogr.wkbLineString)
+
+#
+# Line
+###########################################################
+###########################################################
+# Ajouter un champ dans la table attributaire
+# Definir l'attribut (FieldDefn)
+fielddef = ogr.FieldDefn("id", ogr.OFTString)
+# Ajouter l'attribut a la table (CreateField)
+layer_line.CreateField(fielddef)
+
+# Affiher les champs de la table attributairem on recupere les champs avec la methode GetLayerDefn
+layer_ATTRIBUTS = layer_line.GetLayerDefn()
+for i in range(layer_ATTRIBUTS.GetFieldCount()):
+    print("Line - Field %d: %s" % ( i+1, layer_ATTRIBUTS.GetFieldDefn(i).GetName()))
+
+# Créer l'entité
+line = ogr.Geometry(ogr.wkbLineString)
+###########################################################
+###########################################################
+#
+#
+
+#
+# Line
+###########################################################
+###########################################################
+# Ajouter un point à notre ligne
+line.AddPoint(startX1, startY1)
+# Ajouter un point à notre ligne (une ligne = 2 points ou plus)
+line.AddPoint(startX2, startY2)
+# Ajouter un dernier point à notre ligne
+line.AddPoint(startX3, startY3)
+###########################################################
+###########################################################
+#
+#
+
+
+#
+# Line
+###########################################################
+###########################################################
+# Ajouter les attributs et contruire l'entité 
+featureDefn = layer_line.GetLayerDefn()
+feature = ogr.Feature(featureDefn)
+feature.SetGeometry(line)
+feature.SetField('id', 1)
+layer_line.CreateFeature(feature)
+###########################################################
+###########################################################
+#
+#
+
+# Supprimer les fichier temporaires
+del layer_line, ds_line
+```
