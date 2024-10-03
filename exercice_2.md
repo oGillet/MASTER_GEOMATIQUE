@@ -37,6 +37,8 @@ La direction est déterminée de manière aléatoire à chaque itération (par e
 
 Le point de départ est le Gros Horloge, situé aux coordonnées (121475.93, 6350115.88, EPSG::3857).
 
+![walk](images/random_walk.gif)
+
 ## Amélioration du jeu du + ou du - 
 
 - Vous pouvez modifier la vitesse du marcheur à chaque itération (par exemple, il peut se mettre à courir ou marcher de plus en plus lentement).
