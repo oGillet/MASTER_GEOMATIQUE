@@ -25,7 +25,7 @@ while (chercheToujours):
         print ('Bingo, vous avez trouvé en '+str(c + 1)+' coup(s)')
 ```
 
-## Amélioration du jeu du + ou du - 
+### Amélioration du jeu du + ou du - 
 
 - Limiter le nombre de tentatives à 10 essais maximum. Après 10 essais, si l’utilisateur n’a pas trouvé, le programme indique qu’il a perdu et révèle le nombre.
 - Permettre à l'utilisateur de choisir la plage de nombres (par exemple, entre 1 et 1000).
@@ -39,7 +39,7 @@ Le point de départ est le Gros Horloge, situé aux coordonnées (121475.93, 635
 
 ![walk](images/random_walk.gif)
 
-## Amélioration du jeu du + ou du - 
+### Amélioration du jeu du + ou du - 
 
 - Vous pouvez modifier la vitesse du marcheur à chaque itération (par exemple, il peut se mettre à courir ou marcher de plus en plus lentement).
 - Autre possibilité d'amélioration : créer des obstacles dans l'environnement de simulation ou définir des limites à cet environnement.
