@@ -47,3 +47,44 @@ Le point de départ est le Gros Horloge, situé aux coordonnées (121475.93, 635
 - Fixer une destination et observer combien de temps il met à l'atteindre.
 - Ajouter une mémoire au marcheur (après tout, il n'est peut-être pas si ivre que ça).
 - ...
+
+  ```
+  import random
+import matplotlib.pyplot as plt
+import os
+
+# Position du marcheur
+x = [5000]
+y = [5000]
+# Nombre mouvements
+nOfMouv = 100
+
+# Debuter la marche 
+for i in range(nOfMouv):
+    print('Mouvement ', i)
+    direction = random.choice(['N', 'O', 'S', 'E'])
+    
+    if direction == 'O':
+        print('GOOOO ===> Ouest')
+        x.append(x[-1] - 5)
+        y.append(y[-1])
+    elif direction == 'N':
+        print('GOOOO ===> Nord')
+        y.append(y[-1] + 5)
+        x.append(x[-1])
+    elif direction == 'E':
+        print('GOOOO ===> Est')
+        x.append(x[-1] + 5)
+        y.append(y[-1])
+    else:
+        print('GOOOO ===> Sud')
+        y.append(y[-1] - 5)
+        x.append(x[-1])
+
+    # Plot and save each iteration as an image
+    plt.plot(x, y, color='blue')
+    plt.xlim(4900, 5100)  # Fix x-axis limits to keep it stable
+    plt.ylim(4900, 5100)  # Fix y-axis limits to keep it stable
+    plt.title(f'Movement {i+1}')
+    plt.show()
+```
