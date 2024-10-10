@@ -48,8 +48,8 @@ Le point de départ est le Gros Horloge, situé aux coordonnées (121475.93, 635
 - Ajouter une mémoire au marcheur (après tout, il n'est peut-être pas si ivre que ça).
 - ...
 
-  ```
-  import random
+``` python
+import random
 import matplotlib.pyplot as plt
 import os
 
