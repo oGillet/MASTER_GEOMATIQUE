@@ -156,7 +156,7 @@ feature.SetGeometry(point)
 feature.SetField('ID', 1)
 layer.CreateFeature(feature)
 # Supprimer les fichier temporaires
-del layer, ds
+del layer, ds               
 
 iface.addVectorLayer("start.shp", "start", "ogr")
 
