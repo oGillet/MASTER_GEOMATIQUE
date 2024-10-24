@@ -76,19 +76,20 @@ iface.addVectorLayer("start.shp", "start", "ogr")
 ```
 ## Exercices
 
-L'image suivante montre l'environnement dans lequel se déplacera votre marcheur ivre : 
-- Il s'agit du campus
-- La résolution spaitale est de 10 mètres.
-- Les points sont soit des "free space" ou des "buildings". Ce derniers constituent un obstacle pour les marcheurs. 
+L'image suivante montre l'environnement dans lequel se déplacera mon marcheur ivre :
+
+    -Il s'agit du campus.
+    -La résolution spatiale est de 10 mètres.
+    -Les points sont soit des 'free spaces' ou des 'buildings'. Ces derniers constituent des obstacles pour les marcheurs.
 
 ### Exercice du 07/11/2024
-A vous de créer votre environnement de simulation - /!\\/!\\/!\\/!\\ Exercice à faire pour la prochaine séance /!\\/!\\/!\\/!\\
+A vous de créer votre environnement de simulation - /!\\/!\\/!\\/!\\ Exercice à réaliser pour la prochaine séance /!\\/!\\/!\\/!\\
 
 ![env](images/env_QGIS.png)
 
 ### Exercice du 25/10/2024
-Vous devez projeter dans l'espace l'itinéraire de votre marcheur ivre (Vous devez ainsi mobiliser le code ci-dessus et celui-ci [(Jeu du pendu, jeu du + ou -, jeu de la Bataille)](./exercice_2.html).)?
-Amélioration n°1: Fixer une bounding box à  l'environnement de simulation. 
+Vous devez projeter dans l'espace l'itinéraire de votre marcheur ivre (vous devez ainsi mobiliser le code ci-dessus ainsi que celui du [marcheur ivre](./exercice_2.html))?
+Amélioration n°1: Définir une bounding box à l'environnement de simulation. 
 
 ``` python
 ###########################################################
