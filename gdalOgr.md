@@ -87,7 +87,7 @@ A vous de créer votre environnement de simulation - /!\\/!\\/!\\/!\\ Exercice �
 ![env](images/env_QGIS.png)
 
 ### Exercice du 25/10/2024
-Vous devez spatialiser projeter dans l'espace la marcheur de votre marcheur ivre (Vous devez mobiliser le code ci-dessus et celui dans le [(Jeu du pendu, jeu du + ou -, jeu de la Bataille)](./exercice_2.html).)?
+Vous devez projeter dans l'espace l'itinéraire de votre marcheur ivre (Vous devez ainsi mobiliser le code ci-dessus et celui-ci [(Jeu du pendu, jeu du + ou -, jeu de la Bataille)](./exercice_2.html).)?
 Amélioration n°1: Fixer une bounding box à  l'environnement de simulation. 
 
 ``` python
