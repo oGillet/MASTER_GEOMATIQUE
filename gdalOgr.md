@@ -74,6 +74,9 @@ del layer, ds
 iface.addVectorLayer("start.shp", "start", "ogr")
 
 ```
+## Exercice
+
+![env](images/env_QGIS.png)
 
 ``` python
 ###########################################################
