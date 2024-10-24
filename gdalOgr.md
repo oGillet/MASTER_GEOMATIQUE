@@ -90,5 +90,5 @@ L'image suivante montre l'environnement dans lequel se déplacera mon marcheur i
 
 ![env](images/env_QGIS.png)
 
-A vous de créer votre environnement de simulation  
-⚠️⚠️⚠️⚠️ Exercice à réaliser pour la prochaine séance ⚠️⚠️⚠️⚠️  
+A vous de créer votre environnement de simulation.  
+⚠️⚠️⚠️⚠️ Exercice à réaliser pour la prochaine séance. ⚠️⚠️⚠️⚠️  
