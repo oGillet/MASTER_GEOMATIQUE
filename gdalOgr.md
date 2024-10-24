@@ -83,9 +83,10 @@ Amélioration n°1: Définir une bounding box à l'environnement de simulation.
 
 ### Exercice du 07/11/2024
 L'image suivante montre l'environnement dans lequel se déplacera mon marcheur ivre :
--Il s'agit du campus.
--La résolution spatiale est de 10 mètres.
--Les points sont soit des 'free spaces' ou des 'buildings'. Ces derniers constituent des obstacles pour les marcheurs.
+
+    -Il s'agit du campus.
+    -La résolution spatiale est de 10 mètres.
+    -Les points sont soit des 'free spaces' ou des 'buildings'. Ces derniers constituent des obstacles pour les marcheurs.
 
 ![env](images/env_QGIS.png)
 
