@@ -85,11 +85,11 @@ L'image suivante montre l'environnement dans lequel se déplacera mon marcheur i
 ![env](images/env_QGIS.png)
 
 ### Exercice du 07/11/2024
-A vous de créer votre environnement de simulation
+A vous de créer votre environnement de simulation  
 /!\\/!\\/!\\/!\\ Exercice à réaliser pour la prochaine séance /!\\/!\\/!\\/!\\
 
 ### Exercice du 25/10/2024
-Vous devez projeter dans l'espace l'itinéraire de votre marcheur ivre (vous devez ainsi mobiliser le code ci-dessus ainsi que celui du [marcheur ivre](./exercice_2.html))?
+Vous devez projeter dans l'espace l'itinéraire de votre marcheur ivre (vous devez ainsi mobiliser le code ci-dessus ainsi que celui du [marcheur ivre](./exercice_2.html))?  
 Amélioration n°1: Définir une bounding box à l'environnement de simulation. 
 
 ``` python
