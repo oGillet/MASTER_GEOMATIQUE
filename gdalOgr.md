@@ -74,9 +74,21 @@ del layer, ds
 iface.addVectorLayer("start.shp", "start", "ogr")
 
 ```
-## Exercice
+## Exercices
+
+L'image suivante montre l'environnement dans lequel se déplacera votre marcheur ivre : 
+- Il s'agit du campus
+- La résolution spaitale est de 10 mètres.
+- Les points sont soit des "free space" ou des "buildings". Ce derniers constituent un obstacle pour les marcheurs. 
+
+### Exercice du 07/11/2024
+A vous de créer votre environnement de simulation - /!\/!\/!\/!\ Exercice à faire pour la prochaine séance /!\/!\/!\/!\. 
 
 ![env](images/env_QGIS.png)
+
+### Exercice du 25/10/2024
+Vous devez spatialiser projeter dans l'espace la marcheur de votre marcheur ivre (Vous devez mobiliser le code ci-dessus et celui)?
+Amélioration n°1: Fixer une bounding box à  l'environnement de simulation. 
 
 ``` python
 ###########################################################
