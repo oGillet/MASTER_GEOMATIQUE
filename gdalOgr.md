@@ -76,6 +76,12 @@ iface.addVectorLayer("start.shp", "start", "ogr")
 ```
 ## Exercices
 
+### Exercice du 25/10/2024
+Vous devez projeter dans l'espace l'itinéraire de votre marcheur ivre.  
+Vous pouvez mobiliser le code ci-dessus ainsi que celui du [marcheur ivre](./exercice_2.html).  
+Amélioration n°1: Définir une bounding box à l'environnement de simulation.  
+
+
 L'image suivante montre l'environnement dans lequel se déplacera mon marcheur ivre :
 
     -Il s'agit du campus.
@@ -87,54 +93,3 @@ L'image suivante montre l'environnement dans lequel se déplacera mon marcheur i
 ### Exercice du 07/11/2024
 A vous de créer votre environnement de simulation  
 ⚠️⚠️⚠️⚠️ Exercice à réaliser pour la prochaine séance ⚠️⚠️⚠️⚠️  
-
-### Exercice du 25/10/2024
-Vous devez projeter dans l'espace l'itinéraire de votre marcheur ivre.  
-Vous pouvez mobiliser le code ci-dessus ainsi que celui du [marcheur ivre](./exercice_2.html).  
-Amélioration n°1: Définir une bounding box à l'environnement de simulation.  
-
-``` python
-###########################################################
-###########################################################
-####                     PROJET                        ####
-####                                                   ####
-###########################################################
-###########################################################
-
-###############################################################################
-# ==============================================================================
-# Import des librairies et des fonctions externes
-# ==============================================================================
-###############################################################################
-
-import numpy as np
-import matplotlib.pyplot as plt
-from osgeo import gdal, ogr, osr
-import os
-
-###############################################################################
-# ==============================================================================
-# Script principal
-# ==============================================================================
-###############################################################################
-
-# Fixer un repertoire de travail
-os.chdir("/home/gilleol2/Desktop/MASTER_2")
-
-# Nom du shapefile
-daShapefile = r"campus_points.shp"
-
-# Ouvrir le shapefile
-dataSource = ogr.Open(daShapefile)
-daLayer = dataSource.GetLayer(0)
-layerDefinition = daLayer.GetLayerDefn()
-
-# Afficher tous les attributs de la table attributaire
-for i in range(layerDefinition.GetFieldCount()):
-    print(layerDefinition.GetFieldDefn(i).GetName())
-    
-# Boucler sur les points pour afficher leur type
-for feature in daLayer:
-    print(str(int(feature.GetField("id"))) + " => " + feature.GetField("type")    
-daLayer.ResetReading()
-```
