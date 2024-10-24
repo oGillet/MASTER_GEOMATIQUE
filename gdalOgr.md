@@ -82,7 +82,7 @@ L'image suivante montre l'environnement dans lequel se déplacera votre marcheur
 - Les points sont soit des "free space" ou des "buildings". Ce derniers constituent un obstacle pour les marcheurs. 
 
 ### Exercice du 07/11/2024
-A vous de créer votre environnement de simulation - /!\\/!\\/!\\/!\\ Exercice à faire pour la prochaine séance /!\/!\/!\/!\. 
+A vous de créer votre environnement de simulation - /!\\/!\\/!\\/!\\ Exercice à faire pour la prochaine séance /!\\/!\\/!\\/!\\
 
 ![env](images/env_QGIS.png)
 
