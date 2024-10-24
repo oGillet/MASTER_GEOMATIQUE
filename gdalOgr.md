@@ -4,7 +4,7 @@
 
 Pour plus d'informations sur la manipulation des objets spatiaux et des méthodes associées, voici deux sites:
 - [Le site de Jared Erickson, Cort Daniel et Michael Payne](https://pcjericks.github.io/py-gdalogr-cookbook/index.html)  
-- [Le site de GDAL]([https://pcjericks.github.io/py-gdalogr-cookbook/index.html](https://gdal.org/en/latest/))  
+- [Le site de GDAL](https://gdal.org/en/latest/) 
 
 
 ``` python
