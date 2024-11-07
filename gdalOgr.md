@@ -173,3 +173,26 @@ del layer, ds
 iface.addVectorLayer("line.shp", "line", "ogr")
 
 ```
+
+``` python
+###########################################################
+###########################################################
+####                  Ouvrir shapefile                 ####
+###########################################################
+###########################################################
+
+# Ouvrir le shapefile de notre zone d'etude 
+DriverName = "ESRI Shapefile"      # e.g.: GeoJSON, ESRI Shapefile
+FileName = "env_simulation.shp"
+driver = ogr.GetDriverByName('ESRI Shapefile')
+dataSource = driver.Open(FileName, 0) # 0 means read-only. 1 means writeable.
+
+# Vérifier l'ouveture du shapefile
+if dataSource is None:
+    print('Could not open %s' % (FileName))
+else:
+    print('Opened %s' % (FileName))
+    layer = dataSource.GetLayer()
+    featureCount = layer.GetFeatureCount()
+    print("Number of features in %s: %d" % (os.path.basename(FileName),featureCount))
+```
