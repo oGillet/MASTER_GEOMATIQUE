@@ -261,6 +261,6 @@ Compléter le dossier réalisé précédemment en ajoutant des statistiques issu
 - Exporter les données dans un flat file (.txt, .csv)
 - Réaliser des statistiques (distance moyenne cumulée parcourue, nombre d'obstacles rencontrés, etc.)  
 ▶️ A vous de jouer, à vous démarquer !  
-⚠️⚠️⚠️⚠️ Toutes améliorations du code seront fortement appréciées (e.g ajout d'une destination, environnement de simulation plus complexe, etc.).  
+⚠️⚠️⚠️⚠️ Toutes améliorations du code seront fortement appréciées (e.g environnement plus complexe, destination, etc.).  
 ⚠️⚠️⚠️⚠️ Ces nouveautés doivent détaillées dans le rapport.  
 
