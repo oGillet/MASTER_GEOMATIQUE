@@ -248,3 +248,19 @@ with open(file_path_to_save_data, mode='w', newline='', encoding='utf-8') as fil
     writer.writerows(data)
 
 ```
+
+# Dossier (en .zip) à rendre pour le vendredi 13 décembre (avant minuit sinon -3 points):
+- Un rapport de trois pages avec un flowchart
+- Un script python en .py (je ne veux pas de fichier texte pour exécuter le code)
+- Le shapefile de votre environnement de simulation (tous les fichiers, à savoir le .shp, .dbf, .prj, .shx)
+
+# Examen terminal de janvier 2025 :
+Compléter le dossier réalisé précédemment en ajoutant des statistiques issues de votre simulation :
+- Exécuter plusieurs fois votre simulation (2, 10, 10000 fois, c'est comme vous voulez)
+- Enregistrer des informations à chaque itération
+- Exporter les données dans un flat file (.txt, .csv)
+- Réaliser des statistiques (distance moyenne cumulée parcourue, nombre d'obstacles rencontrés, etc.)
+▶️ A vous de jouer, à vous démarquer ! 
+⚠️⚠️⚠️⚠️ Toutes améliorations du code seront fortement appréciées (e.g ajout d'une destination, environnement de simulation plus complexe, etc.). 
+⚠️⚠️⚠️⚠️ Ces nouveautés doivent détaillées dans le rapport. 
+
