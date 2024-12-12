@@ -259,8 +259,8 @@ Compléter le dossier réalisé précédemment en ajoutant des statistiques issu
 - Exécuter plusieurs fois votre simulation (2, 10, 10000 fois, c'est comme vous voulez)
 - Enregistrer des informations à chaque itération
 - Exporter les données dans un flat file (.txt, .csv)
-- Réaliser des statistiques (distance moyenne cumulée parcourue, nombre d'obstacles rencontrés, etc.)
-▶️ A vous de jouer, à vous démarquer ! 
-⚠️⚠️⚠️⚠️ Toutes améliorations du code seront fortement appréciées (e.g ajout d'une destination, environnement de simulation plus complexe, etc.). 
-⚠️⚠️⚠️⚠️ Ces nouveautés doivent détaillées dans le rapport. 
+- Réaliser des statistiques (distance moyenne cumulée parcourue, nombre d'obstacles rencontrés, etc.)  
+▶️ A vous de jouer, à vous démarquer !  
+⚠️⚠️⚠️⚠️ Toutes améliorations du code seront fortement appréciées (e.g ajout d'une destination, environnement de simulation plus complexe, etc.).  
+⚠️⚠️⚠️⚠️ Ces nouveautés doivent détaillées dans le rapport.  
 
