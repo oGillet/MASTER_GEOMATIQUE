@@ -196,3 +196,55 @@ else:
     featureCount = layer.GetFeatureCount()
     print("Number of features in %s: %d" % (os.path.basename(FileName),featureCount))
 ```
+
+``` python
+###########################################################
+###########################################################
+####            Realisation une intersection           ####
+###########################################################
+###########################################################
+
+wkt = "POINT (%d %d)" % (xCoordPosition, YCoordPosition)
+pt = ogr.CreateGeometryFromWkt(wkt)
+buffer = pt.Buffer(5)
+
+intersecting_points = [] 
+for feature in layerEnvironment:
+    geom = feature.GetGeometryRef()
+    attribute_value = feature.GetField("type") 
+    if geom.Intersects(buffer) and attribute_value != "Free space":
+        print(f"Intersecting point: {geom.ExportToWkt()}")
+        break 
+```
+
+
+``` python
+###########################################################
+###########################################################
+####            Creer un tableau de donnees            ####
+###########################################################
+###########################################################
+import csv
+
+# Creer un tableau pour stocker les donnees
+data = [
+    ["number_simulation", "distancePreviousLocation", "distance"]
+]
+
+# Ajouter des donnees
+tmpData = [1,1.8,5]
+data.append(tmpData)
+
+# Definir un nom
+file_path_to_save_data = "results_simulation.csv"
+
+# Verifier si il exsite déjà puis supprimer si c'est le cas
+if os.path.exists(file_path_to_save_data):
+    driver.DeleteDataSource(file_path_to_save_data)
+
+# Ecrire les donnees
+with open(file_path_to_save_data, mode='w', newline='', encoding='utf-8') as file:
+    writer = csv.writer(file)
+    writer.writerows(data)
+
+```
